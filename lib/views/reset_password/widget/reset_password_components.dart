@@ -4,6 +4,7 @@ import 'package:login_page/components/textfield.dart';
 import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
+import 'package:login_page/views/verify_your_password/verify_password.dart';
 
 class ResetPasswordComponents extends StatelessWidget {
   const ResetPasswordComponents({super.key});
@@ -77,7 +78,11 @@ class ResetPasswordComponents extends StatelessWidget {
            Text(AppText.passwordlink,style: Appstyle().light(),),
            spaceheigth,
            CustomTextfields(label: AppText.emailaddress, eye: false),
-         spaceheigth,  Button(text: AppText.resetpasswordlink)
+         spaceheigth,  InkWell(
+          onTap: () {
+            Navigator.push(context, MaterialPageRoute(builder: (context)=>VerifyPassword()));
+          },
+          child: Button(text: AppText.resetpasswordlink))
             ]
                   ),
          )

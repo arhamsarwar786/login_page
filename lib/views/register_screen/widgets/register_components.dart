@@ -6,6 +6,7 @@ import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
+import 'package:login_page/views/reset_password/reset_password.dart';
 
 class RegisterComponents extends StatelessWidget {
   const RegisterComponents({super.key});
@@ -125,7 +126,11 @@ class RegisterComponents extends StatelessWidget {
             CustomTextfields(label: AppText.confirmpassword, eye: true),
 
             SizedBox(height: size.height * 0.03),
-            Button(text: AppText.register),
+            InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>ResetPassword()));
+              },
+              child: Button(text: AppText.register)),
             SizedBox(height: size.height * 0.03),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

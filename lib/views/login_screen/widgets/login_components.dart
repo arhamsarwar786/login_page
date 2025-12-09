@@ -102,7 +102,11 @@ CustomTextfields(label: AppText.password, eye: true),
               ],
             ),
             SizedBox(height: size.height * 0.03),
-            Button(text: AppText.login),
+            InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context)=>RegisterScreen()));
+              },
+              child: Button(text: AppText.login)),
             SizedBox(height: size.height * 0.03),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,

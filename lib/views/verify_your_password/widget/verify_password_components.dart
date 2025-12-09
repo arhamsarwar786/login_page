@@ -5,6 +5,7 @@ import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
+import 'package:login_page/views/create_new_password/create_new_password.dart';
 import 'package:login_page/views/verify_your_password/widget/otp.dart';
 class VerifyPasswordComponents extends StatelessWidget {
   const VerifyPasswordComponents({super.key});
@@ -76,7 +77,10 @@ class VerifyPasswordComponents extends StatelessWidget {
            
                        SizedBox(height: size.height*0.03,),
 
-            Button(text: AppText.verify)
+            InkWell(onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context)=>CreateNewPassword()) );
+            },
+            child: Button(text: AppText.verify))
 
 
           ],),

@@ -5,6 +5,7 @@ import 'package:login_page/components/textfield.dart';
 import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
+import 'package:login_page/views/login_screen/login_screen.dart';
 
 class CreatePasswordComponents extends StatelessWidget {
   const CreatePasswordComponents({super.key});
@@ -98,7 +99,11 @@ Text(AppText.type3,style: Appstyle().light(),)
             
            spaceheigth,
             SizedBox(height: size.height * 0.02),
-            Button(text: AppText.confirmchanges),
+            InkWell(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginScreen()));
+              },
+              child: Button(text: AppText.confirmchanges)),
               
             SizedBox(height: size.height * 0.05),
             Row(children: [],)
