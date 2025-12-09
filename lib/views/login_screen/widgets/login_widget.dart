@@ -5,7 +5,7 @@ import 'package:login_page/components/group1_icon_image.dart';
 import 'package:login_page/components/group_icon_image.dart';
 import 'package:login_page/components/mobile_gradient.dart';
 import 'package:login_page/components/simple_textfield.dart';
-import 'package:login_page/components/textfield.dart';
+import 'package:login_page/components/custom_textfield.dart';
 import 'package:login_page/components/triangle_icon.dart';
 import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_images.dart';

@@ -35,7 +35,7 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
                 obsessedtext=!obsessedtext;
               });
             },
-            child:widget.eye==true? Icon( obsessedtext? Icons.visibility:Icons.visibility_off):null),
+            child:widget.eye==true? Icon( obsessedtext? Icons.visibility:Icons.visibility_off,size: 18,):null),
             // widget.eye==true ? Icon(Iconsax.eye_slash,color: AppColor.white,size: size.height*0.020,): null,
           
           contentPadding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
@@ -59,6 +59,7 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
 
       
       child: TextField(
+        obscureText: obsessedtext,
         style: TextStyle(color: AppColor.white),
         cursorColor: AppColor.white,
       

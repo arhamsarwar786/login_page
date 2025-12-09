@@ -54,16 +54,7 @@ class _CustomTextfieldsState extends State<SimpleTextfield> {
       
         decoration: InputDecoration(  
           
-           suffixIcon:  InkWell(
-            onTap: () {
-             
-              setState(() {
-                obsessedtext=!obsessedtext;
-              });
-          
-            },
-            child:Icon( obsessedtext?  Icons.visibility: Icons.visibility_off,size: 15,),),
-          
+                    
           contentPadding: EdgeInsets.symmetric(vertical: 10,horizontal: 10),
           label: Text(widget.label,style: Appstyle().light(),),
           border: InputBorder.none,

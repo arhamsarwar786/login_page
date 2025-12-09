@@ -3,7 +3,7 @@ import 'package:login_page/components/confirm_button.dart';
 import 'package:login_page/components/circle_icon.dart';
 import 'package:login_page/components/group1_icon_image.dart';
 import 'package:login_page/components/group_icon_image.dart';
-import 'package:login_page/components/textfield.dart';
+import 'package:login_page/components/custom_textfield.dart';
 import 'package:login_page/components/triangle_icon.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
