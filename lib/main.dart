@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/utils/app_route_confrication.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
-import 'package:login_page/views/auth/login_screen.dart';
 import 'package:provider/provider.dart';
 void main(List<String> args) {
   runApp(MyApp());
@@ -13,10 +13,12 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
   providers: [
     ChangeNotifierProvider(create: (context)=>LoginViewModel() )
-  ],    child: MaterialApp(
+  ],    child: MaterialApp.router(
+    
           debugShowCheckedModeBanner: false,
-          
-          home: LoginScreen()
+          routeInformationParser: MyAppRouter().router.routeInformationParser,
+          routerDelegate:MyAppRouter().router.routerDelegate ,
+
 
       
       ),

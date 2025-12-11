@@ -9,7 +9,6 @@ import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/utils/bg_gradient.dart';
 import 'package:login_page/views/auth/create_new_password.dart';
-import 'package:login_page/views/auth/widgets/background_gradient.dart';
 import 'package:login_page/views/auth/widgets/otp.dart';
 class VerifyPassword extends StatelessWidget {
   const VerifyPassword({super.key});
@@ -22,8 +21,8 @@ class VerifyPassword extends StatelessWidget {
       backgroundColor: AppColor.black,
       body:   
        Stack(
-      children: [
-      BackgroundGradient(BG: BgGradient().backround4gradient(context)),
+             children: [
+              BgGradient().backround4gradient(context),
         CircleIcon(),
         TriangleIcon(),
         GroupIconImage(),
@@ -38,25 +37,21 @@ class VerifyPassword extends StatelessWidget {
               Text(AppText.endingwithgmailcom, style: Appstyle().light()),
               SizedBox(height: size.height * 0.04),
               Otp(),
-
+       
               SizedBox(height: size.height * 0.03),
-
+       
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => CreateNewPassword(),
-                    ),
-                  );
+                  Navigator.push(context, MaterialPageRoute(builder: (_)=>CreateNewPassword()));
+                  
                 },
                 child: ConfirmButton(text: AppText.verify),
               ),
             ],
           ),
         ),
-      ],
-    )
+             ],
+           )
       
       );
   }

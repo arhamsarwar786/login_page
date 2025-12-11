@@ -10,12 +10,11 @@ import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/bg_gradient.dart';
 import 'package:login_page/views/auth/login_screen.dart';
-import 'package:login_page/views/auth/widgets/background_gradient.dart';
+import 'package:login_page/views/auth/reset_password.dart';
 import 'package:login_page/views/auth/widgets/costom_spacer.dart';
 import 'package:login_page/views/auth/widgets/login_fields.dart';
 import 'package:login_page/views/auth/widgets/auth_footers.dart';
 import 'package:login_page/views/auth/widgets/mobile_text.dart';
-import 'package:login_page/views/auth/reset_password.dart';
 import 'package:login_page/views/auth/widgets/tablet_text.dart';
 
 class RegisterScreen extends StatelessWidget {
@@ -34,51 +33,51 @@ class RegisterScreen extends StatelessWidget {
         width: size.width,
         decoration: BoxDecoration(),
         child:  
-        Stack(
-      children: [
-      BackgroundGradient(BG: BgGradient().background2gradient(context)),
-        CircleIcon(),
-        TriangleIcon(),
-        GroupIconImage(),
-        Group1IconImage(),
+        SingleChildScrollView(
+          child: Stack(
+                children: [
+               BgGradient().background2gradient(context),
+          CircleIcon(),
+          TriangleIcon(),
+          GroupIconImage(),
+          Group1IconImage(),
+          
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              SizedBox(height: size.height * 0.15),
+              size.width < 500 ? MobileText() : TabletText(),
+              spaceheigth,
+              LoginFields(),
+          
+              SizedBox(height: size.height * 0.03),
+              InkWell(
+                onTap: () {
+                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>ResetPassword()));
 
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            SizedBox(height: size.height * 0.15),
-            size.width < 500 ? MobileText() : TabletText(),
-            spaceheigth,
-            LoginFields(),
-
-            SizedBox(height: size.height * 0.03),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => ResetPassword()),
-                );
-              },
-              child: ConfirmButton(text: AppText.register),
-            ),
-            SizedBox(height: size.height * 0.03),
-            CostomSpacer(),
-            SizedBox(height: size.height * 0.03),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SocialLoginButton(imge: AppImages.google),
-                spacewidth,
-                SocialLoginButton(imge: AppImages.facebook),
-                spacewidth,
-                SocialLoginButton(imge: AppImages.apple),
-              ],
-            ),
-            SizedBox(height: size.height * 0.12),
-           AuthFooters(text: AppText.login,navigator: LoginScreen(),)
-          ],
-        ),
-      ],
-    )
+                },
+                child: ConfirmButton(text: AppText.register),
+              ),
+              SizedBox(height: size.height * 0.03),
+              CostomSpacer(),
+              SizedBox(height: size.height * 0.03),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SocialLoginButton(imge: AppImages.google),
+                  spacewidth,
+                  SocialLoginButton(imge: AppImages.facebook),
+                  spacewidth,
+                  SocialLoginButton(imge: AppImages.apple),
+                ],
+              ),
+              SizedBox(height: size.height * 0.12),
+             AuthFooters(text: AppText.login,navigator: LoginScreen(),)
+            ],
+          ),
+                ],
+              ),
+        )
 
       ),
     );

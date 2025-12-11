@@ -10,7 +10,6 @@ import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/utils/bg_gradient.dart';
 import 'package:login_page/views/auth/verify_password.dart';
-import 'package:login_page/views/auth/widgets/background_gradient.dart';
 class ResetPassword extends StatelessWidget {
   const ResetPassword({super.key});
 
@@ -28,8 +27,8 @@ class ResetPassword extends StatelessWidget {
         decoration: BoxDecoration(),
         child: 
         Stack(
-      children: [
-        BackgroundGradient(BG: BgGradient().background3gradient(context)),
+              children: [
+                 BgGradient().background3gradient(context),
         CircleIcon(),
         TriangleIcon(),
         GroupIconImage(),
@@ -52,18 +51,16 @@ class ResetPassword extends StatelessWidget {
               spaceheigth,
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => VerifyPassword()),
-                  );
+                                   Navigator.push(context, MaterialPageRoute(builder: (_)=>VerifyPassword()));
+        
                 },
                 child: ConfirmButton(text: AppText.resetpasswordlink),
               ),
             ],
           ),
         ),
-      ],
-    )
+              ],
+            )
 
       ),);
   }

@@ -9,10 +9,9 @@ import 'package:login_page/components/triangle_icon.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/utils/bg_gradient.dart';
+import 'package:login_page/views/auth/login_screen.dart';
 import 'package:login_page/views/auth/widgets/mobile_password_text.dart';
 import 'package:login_page/views/auth/widgets/tablet_password_text.dart';
-import 'package:login_page/views/auth/login_screen.dart';
-
 class CreateNewPassword extends StatelessWidget {
   const CreateNewPassword ({super.key});
 
@@ -66,10 +65,8 @@ class CreateNewPassword extends StatelessWidget {
               SizedBox(height: size.height * 0.02),
               InkWell(
                 onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (_) => LoginScreen()),
-                  );
+                                    Navigator.push(context, MaterialPageRoute(builder: (_)=>LoginScreen()));
+
                 },
                 child: ConfirmButton(text: AppText.confirmchanges),
               ),
