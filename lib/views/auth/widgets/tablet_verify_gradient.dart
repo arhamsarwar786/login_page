@@ -7,7 +7,7 @@ class TabletVerifyGradient extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: 0,
+    right: -100,
       bottom: 0,
       child: SizedBox(
         width: MediaQuery.of(context).size.width * 0.8,
