@@ -51,19 +51,19 @@ class ConfirmButton extends StatelessWidget {
   double _getHeight(Size size) {
     if (size.width < 400) {
       // Mobile
-      return size.height * 0.06;
+      return 43;
     }else if (size.width < 600) {
       // large laptop
-      return size.height * 0.04;
+      return 48;
     }
     else if (size.width > size.height){
-      return size.height*0.08;
+      return 48;
     } else if (size.width < 1024) {
       // Tablet
-      return size.height * 0.05;
+      return 48;
     } else {
       // Laptop/Desktop
-      return size.height * 0.06;
+      return 50;
     }
   }
 

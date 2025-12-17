@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:login_page/views/auth/widgets/circle_triangle.dart';
 import 'package:provider/provider.dart';
 import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/components/confirm_button.dart';
-import 'package:login_page/components/circle_icon.dart';
 import 'package:login_page/components/group1_icon_image.dart';
 import 'package:login_page/components/group_icon_image.dart';
 import 'package:login_page/components/custom_textfield.dart';
-import 'package:login_page/components/triangle_icon.dart';
 import 'package:login_page/utils/app_routers_name.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
@@ -26,134 +25,123 @@ class CreateNewPassword extends StatelessWidget {
 
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
-      child: Scaffold(
-        backgroundColor: AppColor.black,
-        body: Container(
-          height: size.height,
-          width: size.width,
-          decoration: BoxDecoration(),
-          child: Stack(
-            children: [
-              BgGradient().backgroundgradient(context),
-              CircleIcon(),
-              TriangleIcon(),
-              GroupIconImage(),
-              Group1IconImage(),
-              
-              Positioned(
-                child: Center(
-                  child: Consumer<LoginViewModel>(
-                    builder: (context, provider, child) {
-                      return Column(
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          SizedBox(height: size.height * 0.2),
-                          Text(
-                            AppText.createnewpassword,
-                            style: Appstyle().bold(context),
-                          ),
-                          spaceheigth,
-                          size.width > 500
-                              ? MobilePasswordText()
-                              : TabletPasswordText(),
-                      
-                          SizedBox(height: size.height * 0.05),
-                          
-                          size.width > 500
-                              ? Column(
-                                  children: [
-                                    CustomTextfields(
-                                      label: AppText.password,
-                                      eye: true,
-                                      fieldName: 'password',
+      child: SafeArea(
+        child: Scaffold(
+          backgroundColor: AppColor.black,
+          body: SingleChildScrollView(
+            child: Container(
+              height: size.height,
+              width: size.width,
+              decoration: BoxDecoration(),
+              child: Stack(
+                children: [
+                  BgGradient().backgroundgradient(context),
+                 Circletriangle(),
+                  GroupIconImage(),
+                  Group1IconImage(),
+                    
+                  Positioned(
+                    child: Center(
+                      child: Consumer<LoginViewModel>(
+                        builder: (context, provider, child) {
+                          return Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              SizedBox(height: size.height * 0.2),
+                              Text(
+                                AppText.createnewpassword,
+                                style: Appstyle().bold(context),
+                              ),
+                              spaceheigth,
+                              size.width > 500
+                                  ? MobilePasswordText()
+                                  : TabletPasswordText(),
+                    
+                              SizedBox(height: size.height * 0.05),
+                    
+                              size.width > 500
+                                  ? Column(
+                                      children: [
+                                        CustomTextfields(
+                                          label: AppText.password,
+                                          eye: true,
+                                          fieldName: 'password',
+                                        ),
+                                        spaceheigth,
+                    
+                                        CustomTextfields(
+                                          label: AppText.confirmpassword,
+                                          eye: true,
+                                          fieldName: 'confirmpassword',
+                                        ),
+                                      ],
+                                    )
+                                  : CustomTextfields(
+                                      label: AppText.emailaddress,
+                                      eye: false,
+                                      fieldName: 'emailaddress',
                                     ),
-                                    spaceheigth,
-                                    
-                                    CustomTextfields(
-                                      label: AppText.confirmpassword,
-                                      eye: true,
-                                      fieldName: 'confirmpassword',
-                                    ),
-                                  ],
-                                )
-                              : CustomTextfields(
-                                  label: AppText.emailaddress,
-                                  eye: false,
-                                  fieldName: 'emailaddress',
-                                ),
-                      
-                          spaceheigth,
-                          SizedBox(height: size.height * 0.02),
-                          
-                          InkWell(
-                            onTap: () {
-                              _validation(context);
-                            },
-                            child: ConfirmButton(text: AppText.confirmchanges),
-                          ),
-                      
-                          SizedBox(height: size.height * 0.05),
-                        ],
-                      );
-                    },
+                    
+                              spaceheigth,
+                              SizedBox(height: size.height * 0.02),
+                    
+                              InkWell(
+                                onTap: () {
+                                  _validation(context);
+                                },
+                                child: ConfirmButton(text: AppText.confirmchanges),
+                              ),
+                    
+                              SizedBox(height: size.height * 0.05),
+                            ],
+                          );
+                        },
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
     );
   }
 }
-void _validation(BuildContext context){
- var provider=context.read<LoginViewModel>();
-  Size size=MediaQuery.of(context).size;
+
+void _validation(BuildContext context) {
+  var provider = context.read<LoginViewModel>();
+  Size size = MediaQuery.of(context).size;
   if (size.width > 500) {
-                                bool isPasswordValid = provider.validateField('password');
-                                bool isConfirmPasswordValid = provider.validateField('confirmpassword');
-                                
-                                if (!isPasswordValid || !isConfirmPasswordValid) {
-                                  return;
-                                }
-                                
-                                String password = provider.getController('password').text.trim();
-                                String confirmPassword = provider.getController('confirmpassword').text.trim();
-                                
-                                if (password != confirmPassword) {
-                                  provider.getController('confirmpassword').clear();
-                                  provider.validateField('confirmpassword'); 
-                                  ScaffoldMessenger.of(context).showSnackBar(
-                                    SnackBar(
-                                      content: Text('Passwords do not match'),
-                                      backgroundColor: Colors.red,
-                                      duration: Duration(seconds: 2),
-                                    ),
-                                  );
-                                  return;
-                                }
-                                
-                                // Sab theek hai, navigate karo
-                                print('Password: $password');
-                                print('Confirm Password: $confirmPassword');
-                                
-                                context.pushNamed(AppRoutersName.loginroutename);
-                                
-                              } else {
-                                // Mobile - Email field validation
-                                
-                                // Validate email field using provider's validateField
-                                bool isEmailValid = provider.validateField('emailaddress');
-                                
-                                // Agar email fill nahi hai
-                                if (!isEmailValid) {
-                                  return;
-                                }
-                                
-                                // Sab theek hai, navigate karo
-                                String email = provider.getController('emailaddress').text.trim();
-                                print('Email: $email');
-                                
-                                context.pushNamed(AppRoutersName.loginroutename);
-                              }
+    bool isPasswordValid = provider.validateField('password');
+    bool isConfirmPasswordValid = provider.validateField('confirmpassword');
+
+    if (!isPasswordValid || !isConfirmPasswordValid) {
+      return;
+    }
+    String password = provider.getController('password').text.trim();
+    String confirmPassword = provider
+        .getController('confirmpassword')
+        .text
+        .trim();
+    if (password != confirmPassword) {
+      provider.getController('confirmpassword');
+      provider.validateField('confirmpassword');
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('Passwords do not match'),
+          backgroundColor: Colors.red,
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return;
+    }
+    context.pushNamed(AppRoutersName.loginroutename);
+  } else {
+    bool isEmailValid = provider.validateField('emailaddress');
+    if (!isEmailValid) {
+      return;
+    }
+    context.pushNamed(AppRoutersName.loginroutename);
+  }
 }

@@ -11,8 +11,8 @@ class SocialLoginButton extends StatelessWidget {
 
     return 
     size.width<500?
-     Container(padding:size.width>400? EdgeInsets.all(4):EdgeInsets.all(6),
-      height: size.height * 0.047,
+     Container(padding:size.width>400? EdgeInsets.all(2):EdgeInsets.all(6),
+      height: 45,
       width: size.width * 0.25,
       decoration: BoxDecoration(
         border: Border.all(color: AppColor.grey, width: 1),
@@ -20,8 +20,8 @@ class SocialLoginButton extends StatelessWidget {
       ),
     
       child: Image.asset(imge),
-    ):size.width<1024?  Container(padding: EdgeInsets.all(5),
-      height: size.height * 0.05,
+    ):size.width<1024?  Container(padding: EdgeInsets.all(3),
+      height: 47,
       width: size.width * 0.18,
       decoration: BoxDecoration(
         border: Border.all(color: AppColor.grey, width: 1),
@@ -30,8 +30,8 @@ class SocialLoginButton extends StatelessWidget {
     
       child: Image.asset(imge),
     )    :
-    Container(padding: EdgeInsets.symmetric(vertical: 7),
-      height: size.height * 0.06,
+    Container(padding: EdgeInsets.symmetric(vertical: 5),
+      height: 48,
       width: size.width * 0.12,
       decoration: BoxDecoration(
         border: Border.all(color: AppColor.grey, width: 1),

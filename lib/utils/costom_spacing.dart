@@ -18,7 +18,5 @@ class CostomSpacing {
         ? SizedBox(width: size.width * 0.33)
         : SizedBox(width: size.width * 0.18);
   }
-  static InkWell(){
-    
-   }
+  
 }

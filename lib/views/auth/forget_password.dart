@@ -13,8 +13,8 @@ import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/utils/bg_gradient.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
 
-class ResetPassword extends StatelessWidget {
-  const ResetPassword({super.key});
+class ForgetPassword extends StatelessWidget {
+  const ForgetPassword({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +34,7 @@ class ResetPassword extends StatelessWidget {
               child: Stack(
                 children: [
                   BgGradient().background3gradient(context),
-                  Circletriangle(),
+                 Circletriangle(),
                   GroupIconImage(),
                   Group1IconImage(),
                     
@@ -46,7 +46,7 @@ class ResetPassword extends StatelessWidget {
                             children: [
                               SizedBox(height: size.height * 0.3),
                               Text(
-                                AppText.resetpassword,
+                                AppText.forgepassword,
                                 style: Appstyle().bold(context),
                               ),
                               SizedBox(height: size.height * 0.01),
@@ -68,7 +68,7 @@ class ResetPassword extends StatelessWidget {
                                   _validation(context);
                                 },
                                 child: ConfirmButton(
-                                  text: AppText.resetpasswordlink,
+                                  text: AppText.forgepassword,
                                 ),
                               ),
                             ],
@@ -86,15 +86,19 @@ class ResetPassword extends StatelessWidget {
     );
   }
 }
+
 void _validation(BuildContext context) {
   var provider = context.read<LoginViewModel>();
   bool isEmailValid = provider.validateField('emailaddress');
-
+ 
   if (isEmailValid) {
+    // Email ki value get karo
     String email = provider.getFieldValue('emailaddress') ?? '';
+    
+    // Email ko next screen pe pass karo
     context.pushNamed(
       AppRoutersName.verifypasswordroutename,
-      extra: email,  
+      extra: email,  // Yeh email next screen ko jayegi
     );
   }
 }

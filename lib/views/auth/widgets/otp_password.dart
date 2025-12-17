@@ -70,6 +70,7 @@ class _OtpPasswordState extends State<OtpPassword> {
                       child: TextFormField(
                         controller: controllers[index],
                         focusNode: focusNodes[index],
+                      
                         onChanged: (value) {
                           
                           viewModel.updateOtp(index, value);
@@ -83,6 +84,7 @@ class _OtpPasswordState extends State<OtpPassword> {
                           }
                         },
                         decoration: InputDecoration(
+                          contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 15),
                           border: InputBorder.none,
                           enabledBorder: viewModel.otpValues[index].isNotEmpty
                               ? GradientOutlineInputBorder(
@@ -132,7 +134,7 @@ class _OtpPasswordState extends State<OtpPassword> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  AppText.enteryourpassword,
+                  AppText.enteryourpasscode,
                   style: TextStyle(
                     color: Colors.red,
                     fontSize: 14,

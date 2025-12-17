@@ -4,6 +4,7 @@ class AppText {
   static const youraccount=" access  your account";
   static const usernameoremail= "User name or Email";
   static const password = "Password"; 
+  static const enteryourpasscode="Enter Your Passcode";
   static const emailaddress = "Email Address";
   static const resetpassword = "Reset Password"; 
 static const typeyourauthorisedemailaddresstoreceiveresetpasswordlink="Type your authorised email address to receive reset";
@@ -18,6 +19,7 @@ static const type1=".  One capital letter & one small letter at least ";
 static const type2=".  One special character ";
 static const type3=".  Minimum 8 digits long";
   static const rememberme = "Remember me"; 
+  static const forgepassword = "Forget Password "; 
   static const forgetpassword = "Forget Password ?"; 
   static const login = "Log in ";
    static const or = "or";
@@ -35,8 +37,9 @@ static const  belowandletthejourneybegin="the details below, and let the journey
   static const youremailaddress ="your email address ";
   static const enteryourpassword="Enter Your Password";
 
-static const endingwithgmailcom ="ending with ********in@gmail.com";
+static const endingwith ="ending with";
 
 static const verify = "Verify";
+static const fullname="Full Name";
 
 }

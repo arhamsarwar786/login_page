@@ -8,16 +8,15 @@ class LoginViewModel extends ChangeNotifier {
     otpValues[index] = value;
     if (showError && value.isNotEmpty) {
       showError = false;
-    
     }
     notifyListeners();
   }
   
-  // Validation
   bool validateOtp() {
     for (String value in otpValues) {
       if (value.isEmpty) {
         showError = true;
+        
         notifyListeners(); 
         return false;
       }
@@ -30,12 +29,10 @@ class LoginViewModel extends ChangeNotifier {
   final Map<String, TextEditingController> _controllers = {};
   final Map<String, String?> _errors = {};
 
-  // Controller get karo
   TextEditingController getController(String fieldName) {
     if (!_controllers.containsKey(fieldName)) {
       _controllers[fieldName] = TextEditingController();
       _controllers[fieldName]!.addListener(() {
-        // Jab user type kare to error clear ho jaye
         if (_errors[fieldName] != null) {
           _errors[fieldName] = null;
           notifyListeners();
@@ -50,19 +47,153 @@ class LoginViewModel extends ChangeNotifier {
     return _errors[fieldName];
   }
 
-  // MAIN VALIDATION FUNCTION - Empty text check karta hai
+  // **NEW METHOD: Field ki value get karne ke liye**
+  String? getFieldValue(String fieldName) {
+    final controller = _controllers[fieldName];
+    if (controller != null) {
+      return controller.text.trim();
+    }
+    return null;
+  }
+
+  // Email validation regex
+  bool _isValidEmail(String email) {
+    final emailRegex = RegExp(
+      r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    );
+    return emailRegex.hasMatch(email);
+  }
+
+  // Password validation - minimum 6 characters, at least 1 letter, 1 number, 1 special char
+  bool _isValidPassword(String password) {
+    if (password.length < 8) return false;
+    
+    final hasLetter = RegExp(r'[a-zA-Z]').hasMatch(password);
+    final hasNumber = RegExp(r'[0-9]').hasMatch(password);
+    final hasSpecialChar = RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(password);
+    
+    return hasLetter && hasNumber && hasSpecialChar;
+  }
+  
+  bool _isValidPasscode(String passcode) {
+    if (passcode.length < 8) return false;
+    
+    final hasLetter = RegExp(r'[a-zA-Z]').hasMatch(passcode);
+    final hasNumber = RegExp(r'[0-9]').hasMatch(passcode);
+    final hasSpecialChar = RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(passcode);
+    
+    return hasLetter && hasNumber && hasSpecialChar;
+  }
+
+  // Get field-specific empty error message
+  String _getEmptyFieldMessage(String fieldName) {
+    switch (fieldName) {
+      case 'usernameoremail':
+        return 'Enter your username or email';
+      case 'fullname':
+        return 'Enter your Full name';
+      case 'emailaddress':
+        return 'Enter your email address';
+      case 'password':
+        return 'Enter your password';
+      case 'passcode':
+        return 'Enter your passcode';
+      case 'confirmpassword':
+        return 'Confirm your password';
+        
+      default:
+        return 'This field is required';
+    }
+  }
+
   bool validateField(String fieldName) {
     final controller = _controllers[fieldName];
     
+    // Check if field is empty
     if (controller == null || controller.text.trim().isEmpty) {
-      _errors[fieldName] = 'Enter your text';
+      _errors[fieldName] = _getEmptyFieldMessage(fieldName);
       notifyListeners();
       return false;
+    }
+    
+    final text = controller.text.trim();
+    
+    // Email address validation (for emailaddress field)
+    if (fieldName == 'emailaddress') {
+      if (!_isValidEmail(text)) {
+        _errors[fieldName] = 'Enter a valid email (e.g., user@example.com)';
+        notifyListeners();
+        return false;
+      }
+    }
+    
+    if (fieldName == 'fullname') {
+      // Full name validation - minimum 2 characters, only letters and spaces
+      if (text.length < 2) {
+        _errors[fieldName] = 'Name must be at least 2 characters';
+        notifyListeners();
+        return false;
+      }
+      
+      // Check if name contains only letters and spaces
+      final hasOnlyLettersAndSpaces = RegExp(r'^[a-zA-Z\s]+$').hasMatch(text);
+      if (!hasOnlyLettersAndSpaces) {
+        _errors[fieldName] = 'Name can only contain letters and spaces';
+        notifyListeners();
+        return false;
+      }
+    }
+    
+    // Username or Email validation
+    if (fieldName == 'usernameoremail') {
+      if (text.contains('@')) {
+        if (!_isValidEmail(text)) {
+          _errors[fieldName] = 'Enter a valid email (e.g., user@example.com)';
+          notifyListeners();
+          return false;
+        }
+      } else {
+        // Username validation - minimum 8 characters
+        if (text.length < 3) {
+          _errors[fieldName] = 'Username must be at least 3 characters';
+          notifyListeners();
+          return false;
+        }
+      }
+    }
+    
+    // Password validation
+    if (fieldName == 'password' || fieldName == 'confirmpassword') {
+      if (!_isValidPassword(text)) {
+        _errors[fieldName] = 'Password must be 8+ chars with letter, number & special char (@, #, etc.)';
+        notifyListeners();
+        return false;
+      }
+    }
+    
+    // Passcode validation
+    if (fieldName == 'passcode') {
+      if (!_isValidPasscode(text)) {
+        _errors[fieldName] = 'Password must be 8+ chars with letter, number & special char (@, #, etc.)';
+        notifyListeners();
+        return false;
+      }
     }
     
     _errors[fieldName] = null;
     notifyListeners();
     return true;
+  }
+
+  // Additional method to validate all fields at once
+  bool validateAllFields(List<String> fieldNames) {
+    bool allValid = true;
+    for (String fieldName in fieldNames) {
+      if (!validateField(fieldName)) {
+        allValid = false;
+      }
+    }
+    return allValid;
   }
 
   @override

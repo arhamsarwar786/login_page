@@ -7,7 +7,7 @@ class MobileText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    var spacewidth = SizedBox(width: size.width * 0.04);
+    var spacewidth = SizedBox(width: size.width * 0.1);
     var spaceheigth = SizedBox(height: size.height * 0.025);
     return Column(
                     children: [

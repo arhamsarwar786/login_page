@@ -12,7 +12,8 @@ class GroupIconImage extends StatelessWidget {
           top: 10,
           child: SizedBox(
             height: size.height * 0.2,
-            child: Image.asset(AppImages.group),
+            child: Image.asset(AppImages.group,fit: BoxFit.cover,height:size.width<500? 100 : 250,
+width: size.width<500?100:200),
           ),
         );
   }

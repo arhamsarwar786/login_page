@@ -34,7 +34,7 @@ class SimpleTextfield extends StatelessWidget {
                 style: Appstyle().bold1(context),
                 cursorColor: AppColor.white,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 14),
                   label: Text(label, style: Appstyle().light()),
                   border: InputBorder.none,
                   enabledBorder: OutlineInputBorder(

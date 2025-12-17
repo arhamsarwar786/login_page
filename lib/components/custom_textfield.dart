@@ -27,7 +27,6 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    // Agar fieldName hai to provider use karo, warna simple controller
     if (widget.fieldName != null) {
       return Consumer<LoginViewModel>(
         builder: (context, provider, child) {
@@ -47,7 +46,7 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
                   obscureText: widget.eye ? obscureText : false,
                   minLines: 1,
                   decoration: InputDecoration(
-                    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
                     label: Text(widget.label, style: Appstyle().light()),
                     suffixIcon: widget.eye
                         ? IconButton(
@@ -86,7 +85,6 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
                     ),
                   ),
                 ),
-                // Error message display
                 if (error != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 6, left: 12),
@@ -105,7 +103,6 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
         },
       );
     } else {
-      // Agar fieldName nahi hai to simple textfield without provider
       return SizedBox(
         width: _getWidth(size),
         child: TextFormField(
@@ -157,4 +154,5 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
       return size.width * 0.4;
     }
   }
+  
 }

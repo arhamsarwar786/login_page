@@ -6,17 +6,12 @@ class CircleIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
-    return  Positioned(
-          left: 20,
-          top: size.height * 0.05,
-          child: SizedBox(
-            height: size.height * 0.02,
-            child: InkWell(
-             onTap: () {
-  Navigator.maybePop(context);
-},
-              child: Image.asset(AppImages.circle)),
-          ),
-        );
+    return  SizedBox(
+  
+      child: Image.asset(AppImages.circle ,
+       height:size.width>500? 25 : 40,
+width: 20
+      ),
+    );
   }
 }
