@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/utils/app_route_confrication.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
-import 'package:login_page/views/dashboard.dart';
 import 'package:provider/provider.dart';
 
 void main(List<String> args) {
@@ -16,15 +16,13 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => LoginViewModel()),
       ],
-      child: MaterialApp(
+      
+      child: MaterialApp.router(
         debugShowCheckedModeBanner: false,
-        home: DashboardScreen()),
-      // child: MaterialApp.router(
-      //   debugShowCheckedModeBanner: false,
-      //   routeInformationProvider: MyAppRouter.router.routeInformationProvider,
-      //   routeInformationParser: MyAppRouter.router.routeInformationParser,
-      //   routerDelegate: MyAppRouter.router.routerDelegate,
-      // ),
+        routeInformationProvider: MyAppRouter.router.routeInformationProvider,
+        routeInformationParser: MyAppRouter.router.routeInformationParser,
+        routerDelegate: MyAppRouter.router.routerDelegate,
+      ),
     );
   }
 }

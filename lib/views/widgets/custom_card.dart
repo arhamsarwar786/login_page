@@ -10,6 +10,7 @@ class CustomCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    Size size = MediaQuery.of(context).size;
     return Container(
       padding: EdgeInsets.all(!Responsive.isMobile(context) ? 15 : 10),
       decoration: BoxDecoration(
@@ -21,8 +22,8 @@ class CustomCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Container(
-            height: 40,
-            width: 40,
+            height: size.width < 350 ? 30 : 40,
+            width: size.width < 350 ? 30 : 40,
             decoration: BoxDecoration(
                 gradient: LinearGradient(
                   begin: Alignment.topRight,
@@ -46,7 +47,7 @@ class CustomCard extends StatelessWidget {
             maxLines: 1,
             style: TextStyle(
                 color: AppColor.clrBigText,
-                fontSize: Responsive.isMobile(context) ? 13 : 16),
+                fontSize:size.width<350?12: Responsive.isMobile(context) ? 16 : 16),
             overflow: TextOverflow.ellipsis,
           ),
           Row(
@@ -58,7 +59,7 @@ class CustomCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: AppColor.clrBigText,
-                    fontSize: Responsive.isMobile(context) ? 15 : 27),
+                    fontSize:size.width<350?12: Responsive.isMobile(context) ? 15 : 27),
               ),
               SizedBox(
                 width: 10,
@@ -69,7 +70,7 @@ class CustomCard extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
                     color: AppColor.clrSmallText,
-                    fontSize: Responsive.isMobile(context) ? 13 : 16),
+                    fontSize:size.width<350?12: Responsive.isMobile(context) ? 13 : 16),
               )
             ],
           ),

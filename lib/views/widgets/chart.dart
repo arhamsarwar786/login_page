@@ -2,11 +2,12 @@ import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/utils/app_color.dart';
 
-// ignore: must_be_immutable
 class Chart extends StatelessWidget {
-  Chart({super.key});
+  final String pieCharttext;
+  final String piechartfield;
+  Chart({super.key, required this.pieCharttext, required this.piechartfield});
 
-  List<PieChartSectionData> paiChartSelectionData = [
+  final List<PieChartSectionData> paiChartSelectionData = [
     PieChartSectionData(
       color: Color(0xFFCE6462),
       value: 20,
@@ -42,7 +43,7 @@ class Chart extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 170,
+      height:MediaQuery.of(context).size.width>350? 120:170,
       child: Stack(
         children: [
           PieChart(PieChartData(
@@ -58,7 +59,7 @@ class Chart extends StatelessWidget {
                 height: 16,
               ),
               Text(
-                "4300",
+                pieCharttext,
                 style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.w600,
@@ -68,7 +69,7 @@ class Chart extends StatelessWidget {
               SizedBox(
                 height: 8,
               ),
-              Text("Employee",style: TextStyle(color: AppColor.blue),)
+              Text(piechartfield,style: TextStyle(color: AppColor.blue),)
             ],
           ))
         ],

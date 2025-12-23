@@ -30,20 +30,22 @@ class HeaderWidget extends StatelessWidget {
                 )),
           if (!Responsive.isMobile(context))
             Expanded(
-              flex: 4,
+          
               child: Row(
                 children: [
                   Expanded(
-                    flex: 5,
+         
                     child: Container(
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.all(Radius.circular(20)),
                           color: AppColor.clrBoxBackground,
                           boxShadow: [
-                            BoxShadow(color: Color(0xFF333333), spreadRadius: 1)
+                            BoxShadow(color: AppColor.greydark, spreadRadius: 1)
                           ]),
                       child: TextField(
+                        style: TextStyle(color: AppColor.darkgrey),
                         decoration: InputDecoration(
+                         
                             filled: false,
                             enabledBorder: OutlineInputBorder(
                                 borderSide:
@@ -58,6 +60,7 @@ class HeaderWidget extends StatelessWidget {
                             hintText: "Search Anything",
                             hintStyle: TextStyle(
                                 color: AppColor.clrSmallText, fontSize: 14),
+                              
                             prefixIcon: Icon(
                               Icons.search,
                               color: AppColor.clrSmallText,
@@ -67,7 +70,7 @@ class HeaderWidget extends StatelessWidget {
                     ),
                   ),
                   Expanded(
-                      flex: 5,
+                      
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.end,
                         mainAxisAlignment: MainAxisAlignment.end,
@@ -83,7 +86,7 @@ class HeaderWidget extends StatelessWidget {
                           ),
                          CircularIcon(iconData: Icons.settings),
                           SizedBox(
-                            width: 5,
+                            width: 10,
                           ),
                           Column(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -100,7 +103,7 @@ class HeaderWidget extends StatelessWidget {
                                 "Flutter Developer",
                                 style: TextStyle(
                                   fontSize: 12,
-                                  color: AppColor.clrSmallText,
+                                  color: const Color.fromARGB(255, 220, 218, 218),
                                 ),
                               )
                             ],
@@ -121,10 +124,7 @@ class HeaderWidget extends StatelessWidget {
                 SizedBox(width: 10,),
                 CircularIcon(iconData: Icons.message, ),
                 SizedBox(width: 10,),
-                CircleAvatar(
-                  backgroundColor: AppColor.clrBoxBackground,
-                  child:Icon(Icons.group, color: AppColor.clrSmallText,),
-                )
+                CircularIcon(iconData: Icons.group,)
               ],
             )
         ],

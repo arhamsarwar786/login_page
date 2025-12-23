@@ -7,6 +7,7 @@ import 'package:login_page/views/auth/login.dart';
 import 'package:login_page/views/auth/register.dart';
 import 'package:login_page/views/auth/reset_password.dart';
 import 'package:login_page/views/auth/verify_password.dart';
+import 'package:login_page/views/dashboard.dart';
 
 class MyAppRouter {
 
@@ -53,6 +54,13 @@ class MyAppRouter {
         path: "/forgetpassword",
         pageBuilder: (context, state) {
           return MaterialPage(child: ForgetPassword());
+        },
+      ),
+      GoRoute(
+        name: AppRoutersName.dashboard,
+        path: "/dashboard",
+        pageBuilder: (context, state) {
+          return MaterialPage(child: DashboardScreen());
         },
       )
     ],

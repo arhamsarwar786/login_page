@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:login_page/utils/app_color.dart';
-
 // ignore: must_be_immutable
 class CircularIcon extends StatelessWidget {
 
@@ -13,7 +11,7 @@ class CircularIcon extends StatelessWidget {
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(60)),
-          color: AppColor.clrBoxBackground,
+          color: const Color.fromARGB(255, 240, 242, 247),
           boxShadow: [
             BoxShadow(
                 color: Color(0xFF333333),spreadRadius: 1

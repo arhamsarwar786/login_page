@@ -15,6 +15,8 @@ class AppImages {
   static const polygon = "assets/images/polygon.png";
   static const group = "assets/images/group.png";
   static const group1 = "assets/images/group1.png";
+  static const person = "assets/images/person.png";
+
 
 
 

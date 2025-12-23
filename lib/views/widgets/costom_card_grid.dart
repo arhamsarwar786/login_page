@@ -8,7 +8,7 @@ class CustomCardGridView extends StatelessWidget {
   final int crossAxisCount;
   final double childAspectRatio;
 
-  CustomCardGridView(
+const  CustomCardGridView(
       {super.key, this.childAspectRatio = 1, this.crossAxisCount = 4});
 
   @override

@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_page/model/menu_model.dart';
 import 'package:login_page/utils/app_color.dart';
+import 'package:login_page/utils/app_routers_name.dart';
 import 'package:login_page/views/widgets/gradient_icon.dart';
 
 class SideMenu extends StatefulWidget {
 
   final GlobalKey<ScaffoldState> scaffoldKey;
 
-  SideMenu({super.key,required this.scaffoldKey});
+const SideMenu({super.key,required this.scaffoldKey});
 
   @override
   State<SideMenu> createState() => _SideMenuState();
@@ -20,7 +22,7 @@ class _SideMenuState extends State<SideMenu> {
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height,
-      width: 200,
+      width: 220,
       decoration: BoxDecoration(
           border: Border(
             right: BorderSide(color: Color(0xFF202529), width: 1),
@@ -49,12 +51,12 @@ class _SideMenuState extends State<SideMenu> {
                           Text(
                             "Trailblazer",
                             style: TextStyle(
-                                color: AppColor.clrBigText, fontSize: 20),
+                                color: AppColor.clrBigText, fontSize: 20,overflow: TextOverflow.ellipsis),
                           ),
                           Text(
                             "Management",
                             style: TextStyle(
-                                color: AppColor.clrBigText, fontSize: 10),
+                                color: AppColor.clrBigText, fontSize: 10,overflow: TextOverflow.ellipsis),
                           )
                         ],
                       )
@@ -118,20 +120,25 @@ class _SideMenuState extends State<SideMenu> {
                       color: AppColor.clrSmallText,
                     ),
                     SizedBox(width: 10,),
-                    Text(
-                      bottomMenu[i].title,
-                      style: selected == i
-                          ? TextStyle(
-                          fontSize: 14,
-                          foreground: Paint()
-                            ..shader = LinearGradient(colors: [
-                              AppColor.clrGradient1,
-                              AppColor.clrGradient2,
-                            ]).createShader(Rect.fromLTWH(0, 0, 200, 70)))
-                          : TextStyle(
-                          fontSize: 14,
-                          color: AppColor.clrSmallText,
-                          fontWeight: FontWeight.normal),
+                    InkWell(
+                      onTap: (){
+                      if(i==1) { context.pushNamed( AppRoutersName.loginroutename);}
+                      },
+                      child: Text(
+                        bottomMenu[i].title,
+                        style: selected == i
+                            ? TextStyle(
+                            fontSize: 14,
+                            foreground: Paint()
+                              ..shader = LinearGradient(colors: [
+                                AppColor.clrGradient1,
+                                AppColor.clrGradient2,
+                              ]).createShader(Rect.fromLTWH(0, 0, 200, 70)))
+                            : TextStyle(
+                            fontSize: 14,
+                            color: AppColor.clrSmallText,
+                            fontWeight: FontWeight.normal),
+                      ),
                     )
                   ],
                 ),

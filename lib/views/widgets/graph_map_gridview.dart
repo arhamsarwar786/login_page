@@ -7,7 +7,7 @@ class GraphMapGridView extends StatelessWidget {
   final int crossAxisCount;
   final double childAspectRatio;
 
-  GraphMapGridView(
+const  GraphMapGridView(
       {super.key, this.childAspectRatio = 1.5, this.crossAxisCount = 2});
 
   @override

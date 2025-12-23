@@ -1,131 +1,142 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:login_page/model/detail_card_model.dart';
 import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/responsive.dart';
 
 class DetailsCard extends StatelessWidget {
-  DetailsCard({super.key});
-
-  final ScrollController controller = ScrollController();
-  final ScrollController controller2 = ScrollController();
+  const DetailsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return SingleChildScrollView(
-      controller: controller2,
-      scrollDirection: Axis.horizontal,
-      child: ConstrainedBox(
-        constraints:
-            BoxConstraints(minWidth: MediaQuery.of(context).size.width),
+    return Container(
+      decoration: BoxDecoration(
+        color: AppColor.clrBoxBackground,
+        boxShadow: [BoxShadow(color: AppColor.greydark, spreadRadius: 1)],
+        borderRadius: BorderRadius.all(Radius.circular(10)),
+      ),
+      child: ClipRRect(
+          borderRadius: BorderRadius.circular(10),
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
-          controller: controller,
-          child: bottomData(context),
+          scrollDirection: Axis.horizontal,
+          child: SingleChildScrollView(
+            scrollDirection: Axis.vertical,
+            child: DataTable(
+            
+              decoration: BoxDecoration(
+                
+        
+                color: AppColor.clrBoxBackground,
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+              ),
+              headingRowColor: WidgetStateProperty.all(AppColor.clrBoxBackground),
+              dataRowColor: WidgetStateProperty.all(AppColor.lightgrey),
+              columnSpacing: Responsive.isMobile(context) ? 50 : 100,
+              horizontalMargin: !Responsive.isMobile(context) ? 20 : 10,
+              headingRowHeight: !Responsive.isMobile(context) ? 56 : 48,
+              
+              dividerThickness: 1,
+        
+              columns: [
+                _buildDataColumn(Icons.numbers, "Numbers"),
+                _buildDataColumn(Icons.numbers, "Id's"),
+                _buildDataColumn(Icons.people, "Persons"),
+                _buildDataColumn(Icons.email, "Email"),
+                _buildDataColumn(Icons.map_rounded, "Country"),
+                _buildDataColumn(Icons.info_outline, "Status"),
+                _buildDataColumn(Icons.book, "Job Title"),
+              ],
+              rows: detailsList.map((detail) => _buildDataRow(detail)).toList(),
+            ),
+          ),
         ),
       ),
     );
   }
 
-  Widget bottomData(BuildContext context) {
-    return Container(
-      width: 1000,
-      decoration: BoxDecoration(
-          color: AppColor.clrBoxBackground,
-          boxShadow: [BoxShadow(color: Color(0xff333333), spreadRadius: 1)],
-          borderRadius: BorderRadius.all(Radius.circular(10))),
-      child: Column(
+  DataColumn _buildDataColumn(IconData icon, String label) {
+    return DataColumn(
+      label: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            decoration: BoxDecoration(
-                color: AppColor.clrBoxBackground,
-                boxShadow: [
-                  BoxShadow(color: Color(0xff333333), spreadRadius: 1)
-                ],
-                borderRadius: BorderRadius.all(Radius.circular(10))),
-            padding: EdgeInsets.all(!Responsive.isMobile(context) ? 20 : 10),
-            child: Row(
-              children: [
-                buildHeaderCell(Icons.numbers,"Numbers",1),
-                buildHeaderCell(Icons.people,"Persons",1),
-                buildHeaderCell(Icons.email,"Email",2),
-                buildHeaderCell(Icons.map_rounded,"Country",1),
-                buildHeaderCell(Icons.info_outline,"Status",1),
-                buildHeaderCell(Icons.book,"Job Title",1),
-              ],
+          Icon(icon, color: AppColor.clrSmallText, size: 15),
+          SizedBox(width: 5),
+          Text(
+            label,
+            style: TextStyle(
+              color: AppColor.clrBigText,
+              fontSize: 13,
+              fontWeight: FontWeight.bold,
             ),
           ),
-          ...detailsList.map((detail) => _buildDetailRow(detail))
         ],
       ),
     );
   }
 
-  Widget _buildDetailRow(DetailCardModel detail) {
-    return Container(
-      color: Color(0xFF131D1F),
-      padding: EdgeInsets.all(15),
-      child: Row(
-        children: [
-          buildDetailsCell(detail.number, 1),
-          buildDetailsCellWithImage(detail.personImage,detail.personName, 1),
-          buildDetailsCell(detail.email, 2),
-          buildDetailsCellWithImage(detail.countryImage,detail.countryName, 1),
-          buildDetailsCell(detail.status, 1),
-          buildDetailsCell(detail.jobTitle, 1),
-        ],
-      ),
-    );
-  }
-
-  Widget buildDetailsCell(String text, int flex) {
-    return Expanded(
-        child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(
-          text,
+  DataRow _buildDataRow(DetailCardModel detail) {
+    return DataRow(
+      cells: [
+        DataCell(
+          Text(
+            detail.number,
+            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+          ),
+        ),
+        DataCell(Text(
+          detail.id,
           style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
-        )
-      ],
-    ));
-  }
-
-  Widget buildDetailsCellWithImage(String imagePath, String text, int flex) {
-    return Expanded(
-        child: Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        imagePath.endsWith('.svg')
-            ? SvgPicture.asset(
-                imagePath,
-                width: 20,
-              )
-            : Image.asset(
-                imagePath,
-                width: 20,
+        ),),
+        
+        DataCell(
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Image.asset(
+                detail.personImage,
+                width: 12,
+                height: 12,
+                color: AppColor.clrSmallText,
               ),
-        SizedBox(width: 5,),
-        Text(
-          text,
-          style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
-        )
+              SizedBox(width: 5),
+              Text(
+                detail.personName,
+                style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+              ),
+            ],
+          ),
+        ),
+        DataCell(
+          Text(
+            detail.email,
+            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+          ),
+        ),
+        DataCell(
+          Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(Icons.flag, color: AppColor.clrSmallText, size: 15),
+              SizedBox(width: 5),
+              Text(
+                detail.countryName,
+                style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+              ),
+            ],
+          ),
+        ),
+        DataCell(
+          Text(
+            detail.status,
+            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+          ),
+        ),
+        DataCell(
+          Text(
+            detail.jobTitle,
+            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+          ),
+        ),
       ],
-    ));
-  }
-
-  Widget buildHeaderCell(IconData imagePath, String text, int flex) {
-    return Expanded(
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Icon(imagePath,color: AppColor.clrSmallText,size: 15,),
-            SizedBox(width: 5,),
-            Text(
-              text,
-              style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
-            )
-          ],
-        ));
+    );
   }
 }

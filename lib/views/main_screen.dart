@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/responsive.dart';
 import 'package:login_page/views/widgets/costom_card_grid.dart';
 import 'package:login_page/views/widgets/details_card.dart';
@@ -13,7 +14,9 @@ class MainScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-    color: const Color.fromARGB(255, 75, 74, 74),
+    decoration: BoxDecoration(gradient: LinearGradient(colors: [
+     AppColor.pink, AppColor.blue,
+    ])),
       height: MediaQuery.of(context).size.height,
       child: SingleChildScrollView(
         child: Padding(

@@ -131,5 +131,6 @@ void _validation(BuildContext context) {
   if (!isemailaddressValid || !isPasswordValid) {
     return;
   }
-  context.pushNamed(AppRoutersName.registerroutename);
+  // context.pushNamed(AppRoutersName.registerroutename);
+context.pushNamed(  AppRoutersName.dashboard);
 }
