@@ -1,16 +1,19 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/utils/app_color.dart';
+import 'package:login_page/viewmodel/theme_view_model.dart';
+import 'package:provider/provider.dart';
 
 class Chart extends StatelessWidget {
   final String pieCharttext;
   final String piechartfield;
-  Chart({super.key, required this.pieCharttext, required this.piechartfield});
-
-  final List<PieChartSectionData> paiChartSelectionData = [
+  final String piechartvalue;
+  Chart({super.key, required this.pieCharttext, required this.piechartfield, required this.piechartvalue});
+ 
+  List<PieChartSectionData> get paiChartSelectionData => [
     PieChartSectionData(
       color: Color(0xFFCE6462),
-      value: 20,
+      value: double.parse(piechartvalue),
       showTitle: false,
       radius: 22,
     ),
@@ -42,6 +45,8 @@ class Chart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
+  
     return SizedBox(
       height:MediaQuery.of(context).size.width>350? 120:170,
       child: Stack(
@@ -61,15 +66,15 @@ class Chart extends StatelessWidget {
               Text(
                 pieCharttext,
                 style: TextStyle(
-                    color: Colors.white,
+                    color:isDark?AppColor.black: AppColor.white,
                     fontWeight: FontWeight.w600,
-                    fontSize: 30,
+                    fontSize: 30,fontFamily: "hel",
                     height: 0.5),
               ),
               SizedBox(
                 height: 8,
               ),
-              Text(piechartfield,style: TextStyle(color: AppColor.blue),)
+              Text(piechartfield,style: TextStyle(color: AppColor.blue,fontFamily: "hel",),)
             ],
           ))
         ],

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 
@@ -17,28 +18,28 @@ class AuthFooters extends StatelessWidget {
         ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(AppText.donthave, style: Appstyle().light1()),
+              Text(AppText.donthave, style: Appstyle().light1(context)),
               InkWell(
                 onTap: () {
                                   context.pushNamed(navigator);
 
                 },
-                child: Text(text, style: Appstyle().light()),
+                child: Text(text, style: Appstyle().light(context)),
               ),
             ],
           )
         : Row(
             children: [
               spacewidth,
-              Text(AppText.donthave, style: Appstyle().light1()),
+              Text(AppText.donthave.tr(), style: Appstyle().light1(context)),
               InkWell(
                 onTap: () {
                   context.pushNamed(navigator);
                 },
-                child: Text(text, style: Appstyle().light()),
+                child: Text(text, style: Appstyle().light(context)),
               ),
               Spacer(),
-              Text(AppText.contactsupport, style: Appstyle().light()),
+              Text(AppText.contactsupport.tr(), style: Appstyle().light(context)),
               spacewidth,
             ],
           );

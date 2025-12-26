@@ -7,13 +7,13 @@ import 'package:login_page/viewmodel/login_view_model.dart';
 class CustomTextfields extends StatefulWidget {
   final String label;
   final bool eye;
-  final String? fieldName; // Add fieldName parameter for validation
+  final String? fieldName; 
   
   const CustomTextfields({
     super.key,
     required this.label,
     required this.eye,
-    this.fieldName, // Optional fieldName
+    this.fieldName, 
   });
 
   @override
@@ -41,13 +41,13 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
               children: [
                 TextFormField(
                   controller: controller,
-                  style: Appstyle().bold1(context),
+                  style: Appstyle().bold3(context),
                   cursorColor: AppColor.white,
                   obscureText: widget.eye ? obscureText : false,
                   minLines: 1,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                    label: Text(widget.label, style: Appstyle().light()),
+                    label: Text(widget.label, style: Appstyle().light(context)),
                     suffixIcon: widget.eye
                         ? IconButton(
                             onPressed: () {
@@ -112,7 +112,7 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
           minLines: 1,
           decoration: InputDecoration(
             contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            label: Text(widget.label, style: Appstyle().light()),
+            label: Text(widget.label, style: Appstyle().light(context)),
             suffixIcon: widget.eye
                 ? IconButton(
                     onPressed: () {

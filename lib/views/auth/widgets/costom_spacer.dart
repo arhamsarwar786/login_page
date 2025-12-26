@@ -29,7 +29,7 @@ class CostomSpacer extends StatelessWidget {
                   color: AppColor.grey,
                 ),
                 SizedBox(width: size.width*0.012),
-                Text(AppText.or, style: Appstyle().light()),
+                Text(AppText.or, style: Appstyle().light(context)),
                 SizedBox(width:size.width*0.012),
                 Container(
                   height: 1,

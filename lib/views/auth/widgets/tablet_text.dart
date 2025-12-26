@@ -13,10 +13,10 @@ class TabletText extends StatelessWidget {
                     children: [
                       Text(AppText.register, style: Appstyle().bold(context)),
                       spaceheigth,
-                      Text(AppText.readytobecome, style: Appstyle().light()),
+                      Text(AppText.readytobecome, style: Appstyle().light2(context)),
                       Text(
                         AppText.belowandletthejourneybegin,
-                        style: Appstyle().light(),
+                        style: Appstyle().light2(context),
                       ),
                     ],
                   );

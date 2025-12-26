@@ -24,7 +24,7 @@ class MobileText extends StatelessWidget {
                             spacewidth,
                             Text(
                               AppText.readytobecome,
-                              style: Appstyle().light(),
+                              style: Appstyle().light2(context),
                             ),
                           ],
                         ),
@@ -34,7 +34,7 @@ class MobileText extends StatelessWidget {
                           spacewidth,
                           Text(
                             AppText.belowandletthejourneybegin,
-                            style: Appstyle().light(),
+                            style: Appstyle().light2(context),
                           ),
                         ],
                       ),

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/model/bottom_card_model.dart';
 import 'package:login_page/utils/app_color.dart';
+import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/responsive.dart';
+import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:login_page/views/widgets/chart.dart';
+import 'package:provider/provider.dart';
 
 class ChartCard extends StatelessWidget {
   final BottomCardModel bottomCardModel;
@@ -11,10 +14,13 @@ class ChartCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+       final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
+      
     return Container(
       padding: EdgeInsets.all(!Responsive.isMobile(context) ? 15 : 10),
       decoration: BoxDecoration(
-        color: AppColor.clrBoxBackground,
+        color:isDark? AppColor.white:
+         AppColor.clrBoxBackground,
         boxShadow: [BoxShadow(color: Color(0xff333333), spreadRadius: 1)],
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
@@ -40,9 +46,9 @@ class ChartCard extends StatelessWidget {
               bottomCardModel.title!,
               maxLines: 1,
               style: TextStyle(
-                color: AppColor.clrBigText,
+                color:isDark? AppColor.black : AppColor.clrBigText,
                 fontSize: Responsive.isMobile(context) ? 11 : 12,
-                overflow: TextOverflow.ellipsis,
+                overflow: TextOverflow.ellipsis, fontFamily: "hel",
               ),
             ),
             SizedBox(height: 10),
@@ -84,8 +90,8 @@ class ChartCard extends StatelessWidget {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                        fontSize: 13,
-                                        color: AppColor.clrBigText,
+                                        fontSize: 13, fontFamily: "hel",
+                                        color:isDark? AppColor.black : AppColor.clrBigText,
                                       ),
                                     ),
                                     Text(
@@ -93,7 +99,7 @@ class ChartCard extends StatelessWidget {
                                       maxLines: 1,
                                       overflow: TextOverflow.ellipsis,
                                       style: TextStyle(
-                                        fontSize: 10,
+                                        fontSize: 10, fontFamily: "hel",
                                         color: AppColor.clrSmallText,
                                       ),
                                     ),
@@ -111,8 +117,8 @@ class ChartCard extends StatelessWidget {
                   child: SizedBox(
                    
                     child: bottomCardModel.type == 0
-                        ? Chart(pieCharttext:"2500",piechartfield: "employes",)
-                        : Chart(pieCharttext: "196",piechartfield: "clients",),
+                        ? Chart(pieCharttext:"2500",piechartfield: AppText.employes,piechartvalue: "20",)
+                        : Chart(pieCharttext: "196",piechartfield: AppText.client,piechartvalue: "35",),
                   ),
                 ),
               ],

@@ -8,18 +8,18 @@ class TabletPasswordText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        AppText.typeyournewstrongpassword,
-                        style: Appstyle().light(),
-                      ),
-                      Text(AppText.mustinclude, style: Appstyle().light()),
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppText.typeyournewstrongpassword,
+          style: Appstyle().light2(context),
+        ),
+        Text(AppText.mustinclude, style: Appstyle().light2(context)),
 
-                      Text(AppText.type1, style: Appstyle().light()),
-                      Text(AppText.type2, style: Appstyle().light()),
-                      Text(AppText.type3, style: Appstyle().light()),
-                    ],
-                  );
+        Text(AppText.type1, style: Appstyle().light2(context)),
+        Text(AppText.type2, style: Appstyle().light2(context)),
+        Text(AppText.type3, style: Appstyle().light2(context)),
+      ],
+    );
   }
 }

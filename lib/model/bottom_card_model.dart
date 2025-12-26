@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/model/graph_model.dart';
+import 'package:login_page/utils/app_text.dart';
 
 
 class BottomCardModel {
@@ -18,12 +19,12 @@ class BottomCardModel {
 
 List bottomCard = [
   BottomCardModel(
-      title: "Job Level and Gender",
+      title:AppText.jobLevelAndGender ,
       iconData: Icons.group,
       type: 0,
       graphData: graphCardData),
   BottomCardModel(
-      title: "Country Insight",
+      title: AppText.countryInsight,
       iconData: CupertinoIcons.cube,
       type: 1,
       graphData: countryData),

@@ -3,6 +3,7 @@ import 'package:go_router/go_router.dart';
 import 'package:login_page/components/custom_textfield.dart';
 import 'package:login_page/components/group_icon_image.dart';
 import 'package:login_page/components/simple_textfield.dart';
+import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:login_page/views/auth/widgets/circle_triangle.dart';
 import 'package:provider/provider.dart';
 import 'package:login_page/utils/app_color.dart';
@@ -19,20 +20,32 @@ import 'package:login_page/views/auth/widgets/mobile_text.dart';
 import 'package:login_page/views/auth/widgets/tablet_text.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
 
-class Register extends StatelessWidget {
+class Register extends StatefulWidget {
   const Register({super.key});
 
+  @override
+  State<Register> createState() => _RegisterState();
+}
+
+class _RegisterState extends State<Register> {
+  @override
+  void initState() {
+    
+    super.initState();
+    context.read<ThemeProvider>().loadTheme();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var spacewidth = SizedBox(width: size.width * 0.04);
     var spaceheigth = SizedBox(height: size.height * 0.025);
+    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
 
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.black,
+          backgroundColor: isDark?AppColor.white: AppColor.black,
           body: SizedBox(
             height: size.height,
             width: size.width,
@@ -93,11 +106,11 @@ class Register extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                SocialLoginButton(imge: AppImages.google),
+                                SocialLoginButton(imge: AppImages.google, color: isDark ? AppColor.white : AppColor.black),
                                 spacewidth,
-                                SocialLoginButton(imge: AppImages.facebook),
+                                SocialLoginButton(imge: AppImages.facebook, color: isDark ? AppColor.white : AppColor.black),
                                 spacewidth,
-                                SocialLoginButton(imge: AppImages.apple),
+                                SocialLoginButton(imge: AppImages.apple, color: isDark ? AppColor.white : AppColor.black,imagecolor: isDark ? AppColor.black : AppColor.white,),
                               ],
                             ),
                             SizedBox(height: size.height * 0.12),

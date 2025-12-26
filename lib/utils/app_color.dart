@@ -20,4 +20,5 @@ static const Color lightgrey= Color(0xFF131D1F);
   static const Color clrGradient1 = Color(0xFFBD9CE4);
   static const Color clrGradient2 = Color(0xFF5868D6);
   static const Color clrMain = Color(0xFF8A53F6);
+  static const  Color purple =  Color(0xff6A52BD);
 }

@@ -6,7 +6,7 @@ import 'package:provider/provider.dart';
 
 class SimpleTextfield extends StatelessWidget {
   final String label;
-  final String fieldName; // Unique identifier for this field
+  final String fieldName; 
   
   const SimpleTextfield({
     super.key,
@@ -31,11 +31,11 @@ class SimpleTextfield extends StatelessWidget {
             children: [
               TextFormField(
                 controller: controller,
-                style: Appstyle().bold1(context),
-                cursorColor: AppColor.white,
+                style: Appstyle().bold3(context),
+                cursorColor: AppColor.black,
                 decoration: InputDecoration(
                   contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 14),
-                  label: Text(label, style: Appstyle().light()),
+                  label: Text(label, style: Appstyle().light(context)),
                   border: InputBorder.none,
                   enabledBorder: OutlineInputBorder(
                     borderSide: BorderSide(

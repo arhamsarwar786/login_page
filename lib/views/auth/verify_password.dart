@@ -9,36 +9,46 @@ import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/utils/bg_gradient.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
+import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:login_page/views/auth/widgets/circle_triangle.dart';
 import 'package:login_page/views/auth/widgets/otp_password.dart';
 import 'package:provider/provider.dart';
 
-class VerifyPassword extends StatelessWidget {
-  final String? email;  // Email parameter add kiya
+class VerifyPassword extends StatefulWidget {
+  final String? email;  
   
-  const VerifyPassword({super.key, this.email});  // Constructor update kiya
+  const VerifyPassword({super.key, this.email}); 
 
+  @override
+  State<VerifyPassword> createState() => _VerifyPasswordState();
+}
+
+class _VerifyPasswordState extends State<VerifyPassword> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ThemeProvider>().isDarkMode;
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var spaceheigth = SizedBox(height: size.height * 0.04);
+    final isDark=Provider.of<ThemeProvider>(context).isDarkMode;
 
-    // Email ko mask kar ke display karne ke liye
-    String displayEmail = _getMaskedEmail(email);
+    String displayEmail = _getMaskedEmail(widget.email);
 
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.black,
+          backgroundColor: isDark? AppColor.white: AppColor.black,
           body: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: size.height,
               width: size.width,
-              decoration: BoxDecoration(),
-              child: Stack(
+             child: Stack(
                 children: [
-                  BgGradient().background4gradient(context),
+                BgGradient().background4gradient(context),
                   Circletriangle(),
                   GroupIconImage(),
                   Group1IconImage(),
@@ -58,17 +68,17 @@ class VerifyPassword extends StatelessWidget {
                               size.width > 400
                                   ? Text(
                                       AppText.enterthepasscodeyoujust,
-                                      style: Appstyle().light(),
+                                      style: Appstyle().light2(context),
                                     )
                                   : Column(
                                       children: [
                                         Text(
                                           AppText.enterthepass,
-                                          style: Appstyle().light(),
+                                          style: Appstyle().light2(context),
                                         ),
                                         Text(
                                           AppText.youremailaddress,
-                                          style: Appstyle().light(),
+                                          style: Appstyle().light2(context),
                                         ),
                                       ],
                                     ),
@@ -77,12 +87,12 @@ class VerifyPassword extends StatelessWidget {
                                 children: [
                                   Text(
                                     AppText.endingwith,
-                                    style: Appstyle().light(),
+                                    style: Appstyle().light2(context),
                                   ),
                                   SizedBox(width: size.width * 0.02),
                                   Text(
-                                    displayEmail,  // "data" ki jagah email show hoga
-                                    style: Appstyle().light().copyWith(
+                                    displayEmail,  
+                                    style: Appstyle().light2(context).copyWith(
                                       fontWeight: FontWeight.w600,
                                     ),
                                   )
@@ -111,7 +121,7 @@ class VerifyPassword extends StatelessWidget {
       ),
     );
   }
-  
+
   String _getMaskedEmail(String? email) {
     if (email == null || email.isEmpty) return '..';
     
@@ -120,11 +130,9 @@ class VerifyPassword extends StatelessWidget {
       String username = parts[0];
       
       if (username.length <= 4) {
-        // ignore: prefer_interpolation_to_compose_strings
         return username + '@' + parts[1];
       }
       String lastFour = username.substring(username.length - 4);
-      // ignore: prefer_interpolation_to_compose_strings
       return  lastFour + '@' + parts[1];
     }
     

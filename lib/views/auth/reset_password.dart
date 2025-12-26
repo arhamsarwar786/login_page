@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:login_page/views/auth/widgets/circle_triangle.dart';
 import 'package:provider/provider.dart';
 import 'package:login_page/utils/app_color.dart';
@@ -13,27 +14,37 @@ import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/utils/bg_gradient.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
 
-class ResetPassword extends StatelessWidget {
+class ResetPassword extends StatefulWidget {
   const ResetPassword({super.key});
 
+  @override
+  State<ResetPassword> createState() => _ResetPasswordState();
+}
+
+class _ResetPasswordState extends State<ResetPassword> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ThemeProvider>().loadTheme();
+  }
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var spaceheigth = SizedBox(height: size.height * 0.04);
-
+    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.black,
+          backgroundColor:isDark? AppColor.white: AppColor.black,
           body: SingleChildScrollView(
-            child: Container(
+            child: SizedBox(
               height: size.height,
               width: size.width,
-              decoration: BoxDecoration(),
+           
               child: Stack(
                 children: [
-                  BgGradient().background3gradient(context),
+               BgGradient().background3gradient(context),
                   Circletriangle(),
                   GroupIconImage(),
                   Group1IconImage(),
@@ -53,9 +64,9 @@ class ResetPassword extends StatelessWidget {
                               Text(
                                 AppText
                                     .typeyourauthorisedemailaddresstoreceiveresetpasswordlink,
-                                style: Appstyle().light(),
+                                style: Appstyle().light2(context),
                               ),
-                              Text(AppText.passwordlink, style: Appstyle().light()),
+                              Text(AppText.passwordlink, style: Appstyle().light2(context)),
                               spaceheigth,
                               SimpleTextfield(
                                 label: AppText.emailaddress,

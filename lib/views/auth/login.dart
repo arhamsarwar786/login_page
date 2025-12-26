@@ -1,8 +1,11 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_page/components/custom_textfield.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
+import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:login_page/views/auth/widgets/circle_triangle.dart';
+import 'package:login_page/views/auth/widgets/language_icon.dart';
 import 'package:provider/provider.dart';
 import 'package:login_page/components/confirm_button.dart';
 import 'package:login_page/components/group1_icon_image.dart';
@@ -19,23 +22,35 @@ import 'package:login_page/views/auth/widgets/costom_spacer.dart';
 import 'package:login_page/views/auth/widgets/auth_footers.dart';
 import 'package:login_page/views/auth/widgets/social_links.dart';
 
-class Login extends StatelessWidget {
+class Login extends StatefulWidget {
   const Login({super.key});
+
+  @override
+  State<Login> createState() => _LoginState();
+}
+
+class _LoginState extends State<Login> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<ThemeProvider>().loadTheme();
+  }
+
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     var spaceheigth = SizedBox(height: size.height * 0.025);
-
+    final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
+    
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
       child: SafeArea(
         child: Scaffold(
-          backgroundColor: AppColor.black,
-          body: 
-          SizedBox(
-          height: size.height,
-          width: size.width,
+          backgroundColor: isDark ? AppColor.white : AppColor.black,
+          body: SizedBox(
+            height: size.height,
+            width: size.width,
             child: SingleChildScrollView(
               child: Stack(
                 children: [
@@ -43,7 +58,8 @@ class Login extends StatelessWidget {
                   Circletriangle(),
                   GroupIconImage(),
                   Group1IconImage(),
-                      
+                  LanguageIcon(),
+                  
                   Center(
                     child: Consumer<LoginViewModel>(
                       builder: (context, provider, child) {
@@ -51,21 +67,21 @@ class Login extends StatelessWidget {
                           children: [
                             SizedBox(height: size.height * 0.2),
                             Text(
-                              AppText.welcomebacktrailblazer,
+                              AppText.welcomebacktrailblazer.tr(),
                               style: Appstyle().bold(context),
                             ),
                             spaceheigth,
-                            Text(AppText.weareexiting, style: Appstyle().light()),
-                            Text(AppText.youraccount, style: Appstyle().light()),
+                            Text(AppText.weareexiting.tr(), style: Appstyle().light2(context)),
+                            Text(AppText.youraccount.tr(), style: Appstyle().light2(context)),
                             spaceheigth,
                             SimpleTextfield(
-                              label: AppText.emailaddress,
+                              label: AppText.emailaddress.tr(),
                               fieldName: 'emailaddress',
                               controller: null,
                             ),
                             spaceheigth,
                             CustomTextfields(
-                              label: AppText.password,
+                              label: AppText.password.tr(),
                               eye: true,
                               fieldName: "password",
                             ),
@@ -75,8 +91,8 @@ class Login extends StatelessWidget {
                               children: [
                                 CostomCheckBox(),
                                 Text(
-                                  AppText.rememberme,
-                                  style: Appstyle().light(),
+                                  AppText.rememberme.tr(),
+                                  style: Appstyle().light(context),
                                 ),
                                 CostomSpacing.space(context),
                                 InkWell(
@@ -86,8 +102,8 @@ class Login extends StatelessWidget {
                                     );
                                   },
                                   child: Text(
-                                    AppText.forgetpassword,
-                                    style: Appstyle().light(),
+                                    AppText.forgetpassword.tr(),
+                                    style: Appstyle().light(context),
                                   ),
                                 ),
                               ],
@@ -105,7 +121,7 @@ class Login extends StatelessWidget {
                             SocialLinks(),
                             SizedBox(height: size.height * 0.02),
                             AuthFooters(
-                              text: AppText.register,
+                              text: AppText.register.tr(),
                               navigator: AppRoutersName.registerroutename,
                             ),
                             SizedBox(height: size.height * 0.20),
@@ -124,13 +140,20 @@ class Login extends StatelessWidget {
   }
 }
 
-void _validation(BuildContext context) {
-  var provider = context.read<LoginViewModel>();
-  bool isemailaddressValid = provider.validateField('emailaddress');
-  bool isPasswordValid = provider.validateField('password');
+void _validation(BuildContext context) async {
+  var loginProvider = context.read<LoginViewModel>();
+  var themeProvider = context.read<ThemeProvider>();
+  
+  bool isemailaddressValid = loginProvider.validateField('emailaddress');
+  bool isPasswordValid = loginProvider.validateField('password');
+  
   if (!isemailaddressValid || !isPasswordValid) {
     return;
   }
-  // context.pushNamed(AppRoutersName.registerroutename);
-context.pushNamed(  AppRoutersName.dashboard);
+
+  await themeProvider.login(rememberMe: themeProvider.rememberMe);
+  
+  if (context.mounted) {
+    context.goNamed(AppRoutersName.dashboard);
+  }
 }

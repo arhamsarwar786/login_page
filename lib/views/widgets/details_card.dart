@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/model/detail_card_model.dart';
 import 'package:login_page/utils/app_color.dart';
+import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/responsive.dart';
+import 'package:login_page/viewmodel/theme_view_model.dart';
+import 'package:provider/provider.dart';
 
 class DetailsCard extends StatelessWidget {
   const DetailsCard({super.key});
 
   @override
   Widget build(BuildContext context) {
+    final isDark= Provider.of<ThemeProvider>(context).isDarkMode;
     return Container(
       decoration: BoxDecoration(
-        color: AppColor.clrBoxBackground,
+        color:isDark ? AppColor.white : AppColor.clrBoxBackground,
         boxShadow: [BoxShadow(color: AppColor.greydark, spreadRadius: 1)],
         borderRadius: BorderRadius.all(Radius.circular(10)),
       ),
@@ -25,27 +29,26 @@ class DetailsCard extends StatelessWidget {
               decoration: BoxDecoration(
                 
         
-                color: AppColor.clrBoxBackground,
+                color:isDark?AppColor.white: AppColor.clrBoxBackground,
                 borderRadius: BorderRadius.all(Radius.circular(20)),
               ),
-              headingRowColor: WidgetStateProperty.all(AppColor.clrBoxBackground),
-              dataRowColor: WidgetStateProperty.all(AppColor.lightgrey),
+              headingRowColor: WidgetStateProperty.all(isDark?AppColor.white:    AppColor.clrBoxBackground),
+              dataRowColor: WidgetStateProperty.all(isDark?AppColor.white: AppColor.lightgrey),
               columnSpacing: Responsive.isMobile(context) ? 50 : 100,
-              horizontalMargin: !Responsive.isMobile(context) ? 20 : 10,
-              headingRowHeight: !Responsive.isMobile(context) ? 56 : 48,
-              
-              dividerThickness: 1,
+        horizontalMargin: !Responsive.isMobile(context) ? 20 : 10,
+        headingRowHeight: !Responsive.isMobile(context) ? 56 : 48,
         
-              columns: [
-                _buildDataColumn(Icons.numbers, "Numbers"),
-                _buildDataColumn(Icons.numbers, "Id's"),
-                _buildDataColumn(Icons.people, "Persons"),
-                _buildDataColumn(Icons.email, "Email"),
-                _buildDataColumn(Icons.map_rounded, "Country"),
-                _buildDataColumn(Icons.info_outline, "Status"),
-                _buildDataColumn(Icons.book, "Job Title"),
+        dividerThickness: 1,
+        columns: [
+                _buildDataColumn(Icons.numbers, AppText.numbers,context),
+                _buildDataColumn(Icons.numbers, AppText.id,context),
+                _buildDataColumn(Icons.people, AppText.persons,context),
+                _buildDataColumn(Icons.email, AppText.email,context),
+                _buildDataColumn(Icons.map_rounded, AppText.country,context),
+                _buildDataColumn(Icons.info_outline, AppText.status,context),
+                _buildDataColumn(Icons.book, AppText.jobTitle,context),
               ],
-              rows: detailsList.map((detail) => _buildDataRow(detail)).toList(),
+              rows: detailsList.map((detail) => _buildDataRow(detail,context)).toList(),
             ),
           ),
         ),
@@ -53,7 +56,8 @@ class DetailsCard extends StatelessWidget {
     );
   }
 
-  DataColumn _buildDataColumn(IconData icon, String label) {
+  DataColumn _buildDataColumn(IconData icon, String label,BuildContext  context) {
+      final isDark= Provider.of<ThemeProvider>(context).isDarkMode;
     return DataColumn(
       label: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -63,9 +67,9 @@ class DetailsCard extends StatelessWidget {
           Text(
             label,
             style: TextStyle(
-              color: AppColor.clrBigText,
+              color:isDark ? AppColor.black : AppColor.clrBigText,
               fontSize: 13,
-              fontWeight: FontWeight.bold,
+              fontWeight: FontWeight.bold,fontFamily: "hel",
             ),
           ),
         ],
@@ -73,18 +77,19 @@ class DetailsCard extends StatelessWidget {
     );
   }
 
-  DataRow _buildDataRow(DetailCardModel detail) {
+  DataRow _buildDataRow(DetailCardModel detail,BuildContext context) {
+      final isDark= Provider.of<ThemeProvider>(context).isDarkMode;
     return DataRow(
       cells: [
         DataCell(
           Text(
             detail.number,
-            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+            style: TextStyle(color:isDark ? AppColor.black : AppColor.clrBigText,fontFamily: "hel", fontSize: 13),
           ),
         ),
         DataCell(Text(
           detail.id,
-          style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+          style: TextStyle(color:isDark ? AppColor.black : AppColor.clrBigText, fontFamily: "hel",fontSize: 13),
         ),),
         
         DataCell(
@@ -100,7 +105,7 @@ class DetailsCard extends StatelessWidget {
               SizedBox(width: 5),
               Text(
                 detail.personName,
-                style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+                style: TextStyle(color:isDark ? AppColor.black : AppColor.clrBigText,fontFamily: "hel", fontSize: 13),
               ),
             ],
           ),
@@ -108,18 +113,18 @@ class DetailsCard extends StatelessWidget {
         DataCell(
           Text(
             detail.email,
-            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+            style: TextStyle(color:isDark ? AppColor.black : AppColor.clrBigText,fontFamily: "hel", fontSize: 13),
           ),
         ),
         DataCell(
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(Icons.flag, color: AppColor.clrSmallText, size: 15),
+              Icon(Icons.flag, color:isDark ? AppColor.black : AppColor.clrSmallText, size: 15),
               SizedBox(width: 5),
               Text(
                 detail.countryName,
-                style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+                style: TextStyle(color:isDark ? AppColor.black : AppColor.clrBigText, fontFamily: "hel", fontSize: 13),
               ),
             ],
           ),
@@ -127,13 +132,13 @@ class DetailsCard extends StatelessWidget {
         DataCell(
           Text(
             detail.status,
-            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+            style: TextStyle(color:isDark ? AppColor.black : AppColor.clrBigText,fontFamily: "hel", fontSize: 13),
           ),
         ),
         DataCell(
           Text(
             detail.jobTitle,
-            style: TextStyle(color: AppColor.clrBigText, fontSize: 13),
+            style: TextStyle(color:isDark ? AppColor.black : AppColor.clrBigText, fontFamily: "hel",fontSize: 13),
           ),
         ),
       ],

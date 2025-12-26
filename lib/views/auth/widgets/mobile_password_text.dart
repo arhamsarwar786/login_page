@@ -11,10 +11,10 @@ class MobilePasswordText extends StatelessWidget {
                     children: [
                       Text(
                         AppText.typeyournewstrongpassword,
-                        style: Appstyle().light(),
+                        style: Appstyle().light2(context),
                       ),
-                      Text(AppText.onecapitalletter, style: Appstyle().light()),
-                      Text(AppText.characterminimum, style: Appstyle().light()),
+                      Text(AppText.onecapitalletter, style: Appstyle().light2(context)),
+                      Text(AppText.characterminimum, style: Appstyle().light2(context)),
                     ],
                   );
   }

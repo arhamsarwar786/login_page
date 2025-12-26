@@ -1,45 +1,141 @@
+
+
 class AppText {
-  static const welcomebacktrailblazer= "Welcome Back, Trailblazer!";
-  static const weareexiting= "We are exited to have your back. Login now and";
-  static const youraccount=" access  your account";
-  static const usernameoremail= "User name or Email";
-  static const password = "Password"; 
-  static const enteryourpasscode="Enter Your Passcode";
-  static const emailaddress = "Email Address";
-  static const resetpassword = "Reset Password"; 
-static const typeyourauthorisedemailaddresstoreceiveresetpasswordlink="Type your authorised email address to receive reset";
-  static const passwordlink = "Password link"; 
-  static const resetpasswordlink="Reset Password link";
-static const createnewpassword="Create new password";
-static const onecapitalletter  =" One capital letter & one small letter at least, One special ";
-static const characterminimum="character & Minimum 8 digits long.";
-static const typeyournewstrongpassword="Type your new strong password. Your password";
-static const  mustinclude=" must include: " ;
-static const type1=".  One capital letter & one small letter at least ";
-static const type2=".  One special character ";
-static const type3=".  Minimum 8 digits long";
-  static const rememberme = "Remember me"; 
-  static const forgepassword = "Forget Password "; 
-  static const forgetpassword = "Forget Password ?"; 
-  static const login = "Log in ";
-   static const or = "or";
-   static const donthave = "Don't have an account ";
-   static const register = "Register";
-   static const contactsupport = "ContactSupport";
-   static const readytobecome ="Ready to become part of the exclusive club? Fill in ";
-static const  belowandletthejourneybegin="the details below, and let the journey begin!";
-  static const confirmpassword = "Confirm Password";
-  static const alreadyhaveanaccount="Already have an account? "; 
-  static const confirmchanges="Confirm Changes ";
-  static const verifyyourcode="Verify Your Code";
-  static const enterthepasscodeyoujust="Enter the passcode you just received on your email address ";
-  static const enterthepass="Enter the passcode you just received on ";
-  static const youremailaddress ="your email address ";
-  static const enteryourpassword="Enter Your Password";
+  
+  // Numbers (static - no )
+  static const  one = "1";
+  static const two = "2";
+  static const three = "3";
+  static const four = "4";
+  static const five = "5";
+  static const six = "6";
+  
+  // Status & Job Titles
+  static const fulltime = "fulltime";
+  static const marketingManager = "marketingManager";
+  static const uiuxDesigner = "uiuxDesigner";
+  static const flutterDeveloper = "flutterDeveloper";
+  static const productDesigner = "productDesigner";
+  
+  // Person Names
+  static const alanWalker = "alanWalker";
+  static const romanKalko = "romanKalko";
+  static const chetanVaghela = "chetanVaghela";
+  static const foden = "foden";
+  
+  // Countries
+  static const france = "france";
+  static const usa = "usa";
+  static const india = "india";
+  static const japan = "japan";
+  static const indonesia = "indonesia";
+  static const uk = "uk";
+  
+  // Emails (static)
+  static const alanwalkerEmail = "alanwalker@gmail.com";
+  static const chetanVEmail = "chetanv@gmail.com";
+  
+  // Graph Data - Job Levels
+  static const seniorLevel = "seniorLevel";
+  static const seniorLevelSubtitle = "seniorLevelSubtitle";
+  static const middleLevel = "middleLevel";
+  static const middleLevelSubtitle = "middleLevelSubtitle";
+  static const juniorLevel = "juniorLevel";
+  static const juniorLevelSubtitle = "juniorLevelSubtitle";
+  static const male = "male";
+  static const maleSubtitle = "maleSubtitle";
+  static const female = "female";
+  static const femaleSubtitle = "femaleSubtitle";
+  
+  // Graph Data - Country Subtitle
+  static const usaSubtitle = "usaSubtitle";
+  static const ukSubtitle = "ukSubtitle";
+  static const indiaSubtitle = "indiaSubtitle";
+  static const japanSubtitle = "japanSubtitle";
+  static const indonesiaSubtitle = "indonesiaSubtitle";
+  
+  // Main Card Data
+  static const monthlyPayroll = "monthlyPayroll";
+  static const companyExpenses = "companyExpenses";
+  static const totalEmployee = "totalEmployee";
+  static const newHires = "newHires";
+  static const usd = "usd";
+  static const people = "people";
+  
+  // Menu Items
+  static const employee = "employee";
+  static const payment = "payment";
+  static const attendance = "attendance";
+  static const permission = "permission";
+  static const company = "company";
+  static const settings = "settings";
+  
+  // Login & Authentication
+  static const countryInsight = "countryInsight";
+  static const jobLevelAndGender = "jobLevelAndGender";
+  static const welcomebacktrailblazer = "welcomebacktrailblazer";
+  static const weareexiting = "weareexiting";
+  static const youraccount = "youraccount";
+  static const usernameoremail = "usernameoremail";
+  static const password = "password";
+  static const enteryourpasscode = "enteryourpasscode";
+  static const emailaddress = "emailaddress";
+  static const resetpassword = "resetpassword";
+  static const typeyourauthorisedemailaddresstoreceiveresetpasswordlink = 
+      "typeyourauthorisedemailaddresstoreceiveresetpasswordlink";
+  static const passwordlink = "passwordlink";
+  static const resetpasswordlink = "resetpasswordlink";
+  static const createnewpassword = "createnewpassword";
+  static const onecapitalletter = "onecapitalletter";
+  static const characterminimum = "characterminimum";
+  static const typeyournewstrongpassword = "typeyournewstrongpassword";
+  static const mustinclude = "mustinclude";
+  static const type1 = "type1";
+  static const type2 = "type2";
+  static const type3 = "type3";
+  static const rememberme = "rememberme";
+  static const forgepassword = "forgepassword";
+  static const forgetpassword = "forgetpassword";
+  static const login = "login";
+  static const or = "or";
+  static const donthave = "donthave";
+  static const register = "register";
+  static const contactsupport = "contactsupport";
+  static const readytobecome = "readytobecome";
+  static const belowandletthejourneybegin = "belowandletthejourneybegin";
+  static const confirmpassword = "confirmpassword";
+  static const alreadyhaveanaccount = "alreadyhaveanaccount";
+  static const confirmchanges = "confirmchanges";
+  static const verifyyourcode = "verifyyourcode";
+  static const enterthepasscodeyoujust = "enterthepasscodeyoujust";
+  static const enterthepass = "enterthepass";
+  static const youremailaddress = "youremailaddress";
+  static const enteryourpassword = "enteryourpassword";
+  static const endingwith = "endingwith";
+  static const verify = "verify";
 
-static const endingwith ="ending with";
-
-static const verify = "Verify";
-static const fullname="Full Name";
-
+  // Dashboard & Management
+  static const fullname = "fullname";
+  static const employes = "employes";
+  static const client = "client";
+  static const numbers = "numbers";
+  static const id = "id";
+  static const persons = "persons";
+  static const email = "email";
+  static const country = "country";
+  static const status = "status";
+  static const jobTitle = "jobTitle";
+  static const searchanything = "searchanything";
+  static const faizan = "faizan";
+  static const dashboard = "dashboard";
+  static const logout = "logout";
+  static const cancel = "cancel";
+  static const confirmLogout = "confirmLogout";
+  static const trailblazer = "trailblazer";
+  static const management = "management";
+  
+  // Language Selection
+  static const selectLanguage = "selectLanguage";
+  static const english = "english";
+  static const urdu = "urdu";
 }
