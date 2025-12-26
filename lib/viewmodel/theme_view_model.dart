@@ -113,4 +113,7 @@ class ThemeProvider extends ChangeNotifier {
     
     notifyListeners();
   }
+  void notifyLanguageChange() {
+    notifyListeners();
+  }
 }

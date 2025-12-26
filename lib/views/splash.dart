@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_page/utils/app_routers_name.dart';
@@ -55,7 +56,7 @@ class _SplashScreenState extends State<SplashScreen> {
             const CircularProgressIndicator(),
             const SizedBox(height: 30),
             Text(
-              AppText.trailblazer,
+              AppText.trailblazer.tr(),
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,

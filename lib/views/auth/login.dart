@@ -113,7 +113,7 @@ class _LoginState extends State<Login> {
                               onTap: () {
                                 _validation(context);
                               },
-                              child: ConfirmButton(text: AppText.login),
+                              child: ConfirmButton(text: AppText.login.tr()),
                             ),
                             SizedBox(height: size.height * 0.045),
                             CostomSpacer(),

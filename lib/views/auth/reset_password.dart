@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_page/viewmodel/theme_view_model.dart';
@@ -57,19 +58,19 @@ class _ResetPasswordState extends State<ResetPassword> {
                             children: [
                               SizedBox(height: size.height * 0.3),
                               Text(
-                                AppText.resetpassword,
+                                AppText.resetpassword.tr(),
                                 style: Appstyle().bold(context),
                               ),
                               SizedBox(height: size.height * 0.01),
                               Text(
                                 AppText
-                                    .typeyourauthorisedemailaddresstoreceiveresetpasswordlink,
+                                    .typeyourauthorisedemailaddresstoreceiveresetpasswordlink.tr(),
                                 style: Appstyle().light2(context),
                               ),
-                              Text(AppText.passwordlink, style: Appstyle().light2(context)),
+                              Text(AppText.passwordlink.tr(), style: Appstyle().light2(context)),
                               spaceheigth,
                               SimpleTextfield(
-                                label: AppText.emailaddress,
+                                label: AppText.emailaddress.tr(),
                                 fieldName: 'emailaddress',
                                 controller: null,
                               ),
@@ -79,7 +80,7 @@ class _ResetPasswordState extends State<ResetPassword> {
                                   _validation(context);
                                 },
                                 child: ConfirmButton(
-                                  text: AppText.resetpasswordlink,
+                                  text: AppText.resetpasswordlink.tr(),
                                 ),
                               ),
                             ],

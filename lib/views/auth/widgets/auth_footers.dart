@@ -7,8 +7,8 @@ import 'package:login_page/utils/appstyle.dart';
 
 class AuthFooters extends StatelessWidget {
   final String text;
- final String navigator;
-   const AuthFooters({super.key,required this.text,required this.navigator});
+  final String navigator;
+  const AuthFooters({super.key, required this.text, required this.navigator});
 
   @override
   Widget build(BuildContext context) {
@@ -18,11 +18,10 @@ class AuthFooters extends StatelessWidget {
         ? Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(AppText.donthave, style: Appstyle().light1(context)),
+              Text(AppText.donthave.tr(), style: Appstyle().light1(context)),
               InkWell(
                 onTap: () {
-                                  context.pushNamed(navigator);
-
+                  context.pushNamed(navigator);
                 },
                 child: Text(text, style: Appstyle().light(context)),
               ),
@@ -39,7 +38,10 @@ class AuthFooters extends StatelessWidget {
                 child: Text(text, style: Appstyle().light(context)),
               ),
               Spacer(),
-              Text(AppText.contactsupport.tr(), style: Appstyle().light(context)),
+              Text(
+                AppText.contactsupport.tr(),
+                style: Appstyle().light(context),
+              ),
               spacewidth,
             ],
           );

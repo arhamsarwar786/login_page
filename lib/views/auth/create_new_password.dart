@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_page/viewmodel/theme_view_model.dart';
@@ -59,7 +60,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                             children: [
                               SizedBox(height: size.height * 0.2),
                               Text(
-                                AppText.createnewpassword,
+                                AppText.createnewpassword.tr(),
                                 style: Appstyle().bold(context),
                               ),
                               spaceheigth,
@@ -73,21 +74,21 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                                   ? Column(
                                       children: [
                                         CustomTextfields(
-                                          label: AppText.password,
+                                          label: AppText.password.tr(),
                                           eye: true,
                                           fieldName: 'password',
                                         ),
                                         spaceheigth,
                     
                                         CustomTextfields(
-                                          label: AppText.confirmpassword,
+                                          label: AppText.confirmpassword.tr(),
                                           eye: true,
                                           fieldName: 'confirmpassword',
                                         ),
                                       ],
                                     )
                                   : CustomTextfields(
-                                      label: AppText.emailaddress,
+                                      label: AppText.emailaddress.tr(),
                                       eye: false,
                                       fieldName: 'emailaddress',
                                     ),
@@ -99,7 +100,7 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
                                 onTap: () {
                                   _validation(context);
                                 },
-                                child: ConfirmButton(text: AppText.confirmchanges),
+                                child: ConfirmButton(text: AppText.confirmchanges.tr()),
                               ),
                     
                               SizedBox(height: size.height * 0.05),

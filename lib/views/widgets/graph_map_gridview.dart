@@ -13,7 +13,7 @@ const  GraphMapGridView(
   @override
   Widget build(BuildContext context) {
     return GridView.builder(
-      itemCount: bottomCard.length,
+      itemCount: getBottomCard().length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -23,7 +23,7 @@ const  GraphMapGridView(
         childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) =>
-          ChartCard(bottomCardModel: bottomCard[index]),
+          ChartCard(bottomCardModel: getBottomCard()[index]),
     );
   }
 }

@@ -16,7 +16,7 @@ const  CustomCardGridView(
     
    
     return GridView.builder(
-      itemCount: myCards.length,
+      itemCount: myCards().length,
       shrinkWrap: true,
       physics: NeverScrollableScrollPhysics(),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -26,7 +26,7 @@ const  CustomCardGridView(
         childAspectRatio: childAspectRatio,
       ),
       itemBuilder: (context, index) =>
-          CustomCard(mainCardModel: myCards[index]),
+          CustomCard(mainCardModel: myCards() [index]),
     );
   }
 }

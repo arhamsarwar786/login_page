@@ -1,8 +1,10 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_page/model/menu_model.dart';
 import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_text.dart';
+import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:login_page/views/widgets/gradient_icon.dart';
 import 'package:provider/provider.dart';
@@ -20,67 +22,72 @@ class _SideMenuState extends State<SideMenu> {
   int selected = 0;
 
   Future<void> _handleLogout() async {
+    // Store navigator reference before any async operations
+    final navigator = GoRouter.of(context);
     final themeProvider = context.read<ThemeProvider>();
 
     final shouldLogout = await showDialog<bool>(
       context: context,
-      builder: (context) => AlertDialog(
+      barrierDismissible: false,
+      builder: (dialogContext) => AlertDialog(
         backgroundColor: Colors.white,
-        title:  Text(AppText.logout),
-        content:  Text(AppText.confirmLogout),
+        title: Text(AppText.logout.tr(),style: TextStyle(fontFamily: "hel"),),
+        content: Text(AppText.confirmLogout.tr(),style: Appstyle().light3(context),),
         actions: [
           Row(
             children: [
               Spacer(),
               InkWell(
-                onTap: () => Navigator.pop(context, false),
+                onTap: () => Navigator.pop(dialogContext, false),
                 child: Container(
-                height: 40,width: 100,
-                decoration: BoxDecoration(
-                  border: Border.all(color: const Color.fromARGB(255, 119, 94, 209)),
-                  borderRadius: BorderRadius.circular(20)
-                ),
-                child: Center(child: Text(AppText.cancel)))),
+                  height: 40,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: const Color.fromARGB(255, 119, 94, 209)),
+                    borderRadius: BorderRadius.circular(20)
+                  ),
+                  child: Center(child: Text(AppText.cancel.tr(),style: Appstyle().gradienttext(context),))
+                )
+              ),
               SizedBox(width: 30),
- InkWell(
-              onTap: () => Navigator.pop(context, true),
-             child: Container(
-              height: 40,width: 100,
-              decoration: BoxDecoration(
-
-                gradient: LinearGradient(
-                  colors: [AppColor.pink, AppColor.blue],
+              InkWell(
+                onTap: () => Navigator.pop(dialogContext, true),
+                child: Container(
+                  height: 40,
+                  width: 100,
+                  decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [AppColor.pink, AppColor.blue],
+                    ),
+                    borderRadius: BorderRadius.circular(20),
+                  ),
+                  child: Center(
+                    child: Text(
+                      AppText.logout.tr(),
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
                 ),
-                borderRadius: BorderRadius.circular(20),),
-               child: Center(
-                 child: Text(
-                 AppText.logout,
-                  style: TextStyle(color: Colors.white),
-                           ),
-               ),
-             ),
-           ),
-Spacer(),
-
+              ),
+              Spacer(),
             ],
           ),
-          
-          
         ],
       ),
     );
 
-    if (shouldLogout == true && mounted) {
-    
-      widget.scaffoldKey.currentState?.closeDrawer();
-      
-     
-      await Future.delayed(const Duration(milliseconds: 300));
-      await themeProvider.logout();
-
-      if (mounted) {
-        context.go('/login');
+    if (shouldLogout == true) {
+      // Close drawer if it's open
+      if (widget.scaffoldKey.currentState?.isDrawerOpen ?? false) {
+        Navigator.of(context).pop(); // This closes the drawer immediately
+        await Future.delayed(const Duration(milliseconds: 500));
       }
+      
+      // Perform logout
+      await themeProvider.logout();
+      
+      // Navigate to login page
+      navigator.go('/login');
     }
   }
 
@@ -114,7 +121,7 @@ Spacer(),
                         crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           Text(
-                            AppText.trailblazer,
+                            AppText.trailblazer.tr(),
                             style: TextStyle(
                               color: isDark ? AppColor.black : AppColor.clrBigText,
                               fontSize: 20,
@@ -122,7 +129,7 @@ Spacer(),
                             ),
                           ),
                           Text(
-                            AppText.management,
+                            AppText.management.tr(),
                             style: TextStyle(
                               color: isDark ? AppColor.black : AppColor.clrBigText,
                               fontSize: 10,
@@ -134,7 +141,7 @@ Spacer(),
                     ],
                   ),
                   SizedBox(height: 40),
-                  for (var i = 0; i < menu.length; i++)
+                  for (var i = 0; i < menu().length; i++)
                     Container(
                       padding: EdgeInsets.symmetric(horizontal: 13, vertical: 7),
                       child: InkWell(
@@ -147,24 +154,17 @@ Spacer(),
                         child: Row(
                           children: [
                             selected == i
-                                ? GradientIcon(icon: menu[i].icon, size: 20)
+                                ? GradientIcon(icon: menu()[i].icon, size: 20)
                                 : Icon(
-                                    menu[i].icon,
+                                    menu()[i].icon,
                                     size: 20,
                                     color: AppColor.clrSmallText,
                                   ),
                             SizedBox(width: 10),
                             Text(
-                              menu[i].title,
+                              menu()[i].title,
                               style: selected == i
-                                  ? TextStyle(
-                                      fontSize: 14,
-                                      foreground: Paint()
-                                        ..shader = LinearGradient(colors: [
-                                          AppColor.pink,
-                                          AppColor.blue,
-                                        ]).createShader(Rect.fromLTWH(0, 0, 200, 70)),
-                                    )
+                                  ? Appstyle().gradienttext(context)
                                   : TextStyle(
                                       fontSize: 14,
                                       color: isDark ? AppColor.black : AppColor.clrSmallText,
@@ -178,7 +178,7 @@ Spacer(),
                 ],
               ),
             ),
-            for (var i = 0; i < bottomMenu.length; i++)
+            for (var i = 0; i < bottomMenu().length; i++)
               Container(
                 padding: EdgeInsets.symmetric(horizontal: 13, vertical: 7),
                 child: InkWell(
@@ -192,13 +192,13 @@ Spacer(),
                   child: Row(
                     children: [
                       Icon(
-                        bottomMenu[i].icon,
+                        bottomMenu()[i].icon,
                         size: 20,
                         color: i == 1 ? Colors.red : AppColor.clrSmallText,
                       ),
                       SizedBox(width: 10),
                       Text(
-                        bottomMenu[i].title,
+                        bottomMenu()[i].title,
                         style: TextStyle(
                           fontSize: 14,
                           color: i == 1 

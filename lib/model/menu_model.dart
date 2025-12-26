@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/utils/app_text.dart';
 
@@ -8,16 +9,16 @@ class MenuModel {
   MenuModel({required this.icon, required this.title});
 }
 
-List<MenuModel> menu = [
-  MenuModel(icon: Icons.home, title: AppText.dashboard),
-  MenuModel(icon: Icons.supervised_user_circle_outlined, title: AppText.employee),
-  MenuModel(icon: Icons.payment_rounded, title: AppText.payment),
-  MenuModel(icon: Icons.ac_unit, title: AppText.attendance),
-  MenuModel(icon: Icons.menu_book, title: AppText.permission),
-  MenuModel(icon: Icons.other_houses_rounded, title: AppText.company),
-];
+List<MenuModel> menu(){  return [
+  MenuModel(icon: Icons.home, title: AppText.dashboard.tr()),
+  MenuModel(icon: Icons.supervised_user_circle_outlined, title: AppText.employee.tr()),
+  MenuModel(icon: Icons.payment_rounded, title: AppText.payment.tr()),
+  MenuModel(icon: Icons.ac_unit, title: AppText.attendance.tr()),
+  MenuModel(icon: Icons.menu_book, title: AppText.permission.tr()),
+  MenuModel(icon: Icons.other_houses_rounded, title: AppText.company.tr()),
+];}
 
-List<MenuModel> bottomMenu = [
-  MenuModel(icon: Icons.settings, title: AppText.settings),
-  MenuModel(icon: Icons.logout, title: AppText.logout),
-];
+List<MenuModel> bottomMenu() {  return [
+  MenuModel(icon: Icons.settings, title: AppText.settings.tr()),
+  MenuModel(icon: Icons.logout, title: AppText.logout.tr()),
+];}

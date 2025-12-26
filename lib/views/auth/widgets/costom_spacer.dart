@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_text.dart';
@@ -29,7 +30,7 @@ class CostomSpacer extends StatelessWidget {
                   color: AppColor.grey,
                 ),
                 SizedBox(width: size.width*0.012),
-                Text(AppText.or, style: Appstyle().light(context)),
+                Text(AppText.or.tr(), style: Appstyle().light(context)),
                 SizedBox(width:size.width*0.012),
                 Container(
                   height: 1,

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/model/bottom_card_model.dart';
 import 'package:login_page/utils/app_color.dart';
@@ -117,8 +118,8 @@ class ChartCard extends StatelessWidget {
                   child: SizedBox(
                    
                     child: bottomCardModel.type == 0
-                        ? Chart(pieCharttext:"2500",piechartfield: AppText.employes,piechartvalue: "20",)
-                        : Chart(pieCharttext: "196",piechartfield: AppText.client,piechartvalue: "35",),
+                        ? Chart(pieCharttext:"2500",piechartfield: AppText.employes.tr(),piechartvalue: "20",)
+                        : Chart(pieCharttext: "196",piechartfield: AppText.client.tr(),piechartvalue: "35",),
                   ),
                 ),
               ],

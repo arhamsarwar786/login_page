@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/model/detail_card_model.dart';
 import 'package:login_page/utils/app_color.dart';
@@ -40,15 +41,15 @@ class DetailsCard extends StatelessWidget {
         
         dividerThickness: 1,
         columns: [
-                _buildDataColumn(Icons.numbers, AppText.numbers,context),
-                _buildDataColumn(Icons.numbers, AppText.id,context),
-                _buildDataColumn(Icons.people, AppText.persons,context),
-                _buildDataColumn(Icons.email, AppText.email,context),
-                _buildDataColumn(Icons.map_rounded, AppText.country,context),
-                _buildDataColumn(Icons.info_outline, AppText.status,context),
-                _buildDataColumn(Icons.book, AppText.jobTitle,context),
+                _buildDataColumn(Icons.numbers, AppText.numbers.tr(),context),
+                _buildDataColumn(Icons.numbers, AppText.id.tr(),context),
+                _buildDataColumn(Icons.people, AppText.persons.tr(),context),
+                _buildDataColumn(Icons.email, AppText.email.tr(),context),
+                _buildDataColumn(Icons.map_rounded, AppText.country.tr(),context),
+                _buildDataColumn(Icons.info_outline, AppText.status.tr(),context),
+                _buildDataColumn(Icons.book, AppText.jobTitle.tr(),context),
               ],
-              rows: detailsList.map((detail) => _buildDataRow(detail,context)).toList(),
+              rows: getDetailsList().map((detail) => _buildDataRow(detail,context)).toList(),
             ),
           ),
         ),

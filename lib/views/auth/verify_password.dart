@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_page/utils/app_color.dart';
@@ -61,23 +62,23 @@ class _VerifyPasswordState extends State<VerifyPassword> {
                             children: [
                               SizedBox(height: size.height * 0.3),
                               Text(
-                                AppText.verifyyourcode,
+                                AppText.verifyyourcode.tr(),
                                 style: Appstyle().bold(context),
                               ),
                               SizedBox(height: size.height * 0.01),
                               size.width > 400
                                   ? Text(
-                                      AppText.enterthepasscodeyoujust,
+                                      AppText.enterthepasscodeyoujust.tr(),
                                       style: Appstyle().light2(context),
                                     )
                                   : Column(
                                       children: [
                                         Text(
-                                          AppText.enterthepass,
+                                          AppText.enterthepass.tr(),
                                           style: Appstyle().light2(context),
                                         ),
                                         Text(
-                                          AppText.youremailaddress,
+                                          AppText.youremailaddress.tr(),
                                           style: Appstyle().light2(context),
                                         ),
                                       ],
@@ -86,10 +87,10 @@ class _VerifyPasswordState extends State<VerifyPassword> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   Text(
-                                    AppText.endingwith,
+                                    AppText.endingwith.tr(),
                                     style: Appstyle().light2(context),
                                   ),
-                                  SizedBox(width: size.width * 0.02),
+                                  SizedBox(width: 5),
                                   Text(
                                     displayEmail,  
                                     style: Appstyle().light2(context).copyWith(
@@ -105,7 +106,7 @@ class _VerifyPasswordState extends State<VerifyPassword> {
                                 onTap: () {
                                   _validation(context);
                                 },
-                                child: ConfirmButton(text: AppText.verify),
+                                child: ConfirmButton(text: AppText.verify.tr()),
                               ),
                             ],
                           );

@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/appstyle.dart';
@@ -11,11 +12,11 @@ class TabletText extends StatelessWidget {
 
     return Column(
                     children: [
-                      Text(AppText.register, style: Appstyle().bold(context)),
+                      Text(AppText.register.tr(), style: Appstyle().bold(context)),
                       spaceheigth,
-                      Text(AppText.readytobecome, style: Appstyle().light2(context)),
+                      Text(AppText.readytobecome.tr(), style: Appstyle().light2(context)),
                       Text(
-                        AppText.belowandletthejourneybegin,
+                        AppText.belowandletthejourneybegin.tr(),
                         style: Appstyle().light2(context),
                       ),
                     ],

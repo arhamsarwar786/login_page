@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
@@ -19,37 +20,38 @@ class MainCardModel {
   });
 }
 
-List myCards = [
+List myCards() 
+{ return [
   MainCardModel(
-    title: AppText.monthlyPayroll,
+    title: AppText.monthlyPayroll.tr(),
     iconData: Icons.home,
-    subTitle: AppText.usd,
+    subTitle: AppText.usd.tr(),
     count: "\$ 13900",
     percentage: "-10%",
     color: Colors.red,
   ),
   MainCardModel(
-    title: AppText.companyExpenses,
-    subTitle: AppText.usd,
+    title: AppText.companyExpenses.tr(),
+    subTitle: AppText.usd.tr(),
     iconData: HugeIcons.strokeRoundedExpander,
     count: "\$ 23100",
     percentage: "-8%",
     color: Colors.red,
   ),
   MainCardModel(
-    title: AppText.totalEmployee,
-    subTitle: AppText.people,
+    title: AppText.totalEmployee.tr(),
+    subTitle: AppText.people.tr(),
     iconData: CupertinoIcons.group,
     count: "4300",
     percentage: "+10%",
     color: Colors.green,
   ),
   MainCardModel(
-    title: AppText.newHires,
-    subTitle: AppText.people,
+    title: AppText.newHires.tr(),
+    subTitle: AppText.people.tr(),
     iconData: Icons.person,
     count: "102",
     percentage: "+2%",
     color: Colors.green,
   ),
-];
+];}

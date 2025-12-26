@@ -14,12 +14,15 @@ void main() async {
       supportedLocales: const [
         Locale('en'),
         Locale('ur'),
+        Locale('ar'), // ADDED: Arabic language
       ],
       path: 'assets/translations',
       fallbackLocale: const Locale('en'),
       startLocale: const Locale('en'),
       saveLocale: true,
       useOnlyLangCode: true,
+      useFallbackTranslations: true, 
+      assetLoader: const RootBundleAssetLoader(), 
       child: const MyApp(),
     ),
   );
@@ -36,23 +39,15 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
       ],
       child: Builder(
-        // 🔥 THIS IS THE KEY FIX
         builder: (context) {
           return MaterialApp.router(
             debugShowCheckedModeBanner: false,
-
-            // ✅ EasyLocalization bindings
             locale: context.locale,
             supportedLocales: context.supportedLocales,
             localizationsDelegates: context.localizationDelegates,
-
-            // Router
-            routeInformationProvider:
-                MyAppRouter.router.routeInformationProvider,
-            routeInformationParser:
-                MyAppRouter.router.routeInformationParser,
-            routerDelegate:
-                MyAppRouter.router.routerDelegate,
+            routeInformationProvider: MyAppRouter.router.routeInformationProvider,
+            routeInformationParser: MyAppRouter.router.routeInformationParser,
+            routerDelegate: MyAppRouter.router.routerDelegate,
           );
         },
       ),

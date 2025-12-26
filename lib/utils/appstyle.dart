@@ -50,6 +50,21 @@ class Appstyle {
       color: isDark ? AppColor.black : AppColor.white,
     );
   }
+   TextStyle light3(BuildContext context) {
+    return TextStyle(
+      fontFamily: "hel",
+      fontSize: 13,
+    );
+  }
+  
+  TextStyle gradienttext(BuildContext context) {
+    return TextStyle(
+      fontFamily: "hel",
+      fontSize: 13,
+      foreground: Paint()..shader= LinearGradient(colors: [ AppColor.pink,
+                                          AppColor.blue,]).createShader(Rect.fromLTWH(0, 0,200 , 0))
+    );
+  }
  TextStyle light2(BuildContext context) {
     final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     return TextStyle(

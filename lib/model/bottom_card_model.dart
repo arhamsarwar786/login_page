@@ -1,8 +1,8 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/model/graph_model.dart';
 import 'package:login_page/utils/app_text.dart';
-
 
 class BottomCardModel {
   final IconData iconData;
@@ -10,22 +10,27 @@ class BottomCardModel {
   final int? type;
   final List<GraphModel>? graphData;
 
-  BottomCardModel(
-      {required this.iconData,
-        required this.title,
-        required this.type,
-        required this.graphData});
+  BottomCardModel({
+    required this.iconData,
+    required this.title,
+    required this.type,
+    required this.graphData,
+  });
 }
 
-List bottomCard = [
-  BottomCardModel(
-      title:AppText.jobLevelAndGender ,
+List<BottomCardModel> getBottomCard() {
+  return [
+    BottomCardModel(
+      title: AppText.jobLevelAndGender.tr(),
       iconData: Icons.group,
       type: 0,
-      graphData: graphCardData),
-  BottomCardModel(
-      title: AppText.countryInsight,
+      graphData: getgraphCardData(),
+    ),
+    BottomCardModel(
+      title: AppText.countryInsight.tr(),
       iconData: CupertinoIcons.cube,
       type: 1,
-      graphData: countryData),
-];
+      graphData: countryData(),
+    ),
+  ];
+}

@@ -2,40 +2,21 @@
 
 class AppText {
   
-  // Numbers (static - no )
-  static const  one = "1";
-  static const two = "2";
-  static const three = "3";
-  static const four = "4";
-  static const five = "5";
-  static const six = "6";
-  
-  // Status & Job Titles
   static const fulltime = "fulltime";
   static const marketingManager = "marketingManager";
   static const uiuxDesigner = "uiuxDesigner";
   static const flutterDeveloper = "flutterDeveloper";
   static const productDesigner = "productDesigner";
-  
-  // Person Names
   static const alanWalker = "alanWalker";
   static const romanKalko = "romanKalko";
   static const chetanVaghela = "chetanVaghela";
   static const foden = "foden";
-  
-  // Countries
   static const france = "france";
   static const usa = "usa";
   static const india = "india";
   static const japan = "japan";
   static const indonesia = "indonesia";
   static const uk = "uk";
-  
-  // Emails (static)
-  static const alanwalkerEmail = "alanwalker@gmail.com";
-  static const chetanVEmail = "chetanv@gmail.com";
-  
-  // Graph Data - Job Levels
   static const seniorLevel = "seniorLevel";
   static const seniorLevelSubtitle = "seniorLevelSubtitle";
   static const middleLevel = "middleLevel";
@@ -46,31 +27,23 @@ class AppText {
   static const maleSubtitle = "maleSubtitle";
   static const female = "female";
   static const femaleSubtitle = "femaleSubtitle";
-  
-  // Graph Data - Country Subtitle
   static const usaSubtitle = "usaSubtitle";
   static const ukSubtitle = "ukSubtitle";
   static const indiaSubtitle = "indiaSubtitle";
   static const japanSubtitle = "japanSubtitle";
   static const indonesiaSubtitle = "indonesiaSubtitle";
-  
-  // Main Card Data
   static const monthlyPayroll = "monthlyPayroll";
   static const companyExpenses = "companyExpenses";
   static const totalEmployee = "totalEmployee";
   static const newHires = "newHires";
   static const usd = "usd";
   static const people = "people";
-  
-  // Menu Items
   static const employee = "employee";
   static const payment = "payment";
   static const attendance = "attendance";
   static const permission = "permission";
   static const company = "company";
   static const settings = "settings";
-  
-  // Login & Authentication
   static const countryInsight = "countryInsight";
   static const jobLevelAndGender = "jobLevelAndGender";
   static const welcomebacktrailblazer = "welcomebacktrailblazer";
@@ -81,8 +54,7 @@ class AppText {
   static const enteryourpasscode = "enteryourpasscode";
   static const emailaddress = "emailaddress";
   static const resetpassword = "resetpassword";
-  static const typeyourauthorisedemailaddresstoreceiveresetpasswordlink = 
-      "typeyourauthorisedemailaddresstoreceiveresetpasswordlink";
+  static const typeyourauthorisedemailaddresstoreceiveresetpasswordlink =  "typeyourauthorisedemailaddresstoreceiveresetpasswordlink";
   static const passwordlink = "passwordlink";
   static const resetpasswordlink = "resetpasswordlink";
   static const createnewpassword = "createnewpassword";
@@ -113,8 +85,6 @@ class AppText {
   static const enteryourpassword = "enteryourpassword";
   static const endingwith = "endingwith";
   static const verify = "verify";
-
-  // Dashboard & Management
   static const fullname = "fullname";
   static const employes = "employes";
   static const client = "client";
@@ -133,9 +103,8 @@ class AppText {
   static const confirmLogout = "confirmLogout";
   static const trailblazer = "trailblazer";
   static const management = "management";
-  
-  // Language Selection
   static const selectLanguage = "selectLanguage";
   static const english = "english";
   static const urdu = "urdu";
+  static const arabic = 'arabic';
 }

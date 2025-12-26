@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gradient_borders/gradient_borders.dart';
@@ -134,7 +135,7 @@ class _OtpPasswordState extends State<OtpPassword> {
               Padding(
                 padding: const EdgeInsets.only(top: 8.0),
                 child: Text(
-                  AppText.enteryourpasscode,
+                  AppText.enteryourpasscode.tr(),
                   style: TextStyle(
                     color: Colors.red,
                     fontSize: 14,

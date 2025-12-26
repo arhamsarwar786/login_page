@@ -1,3 +1,4 @@
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:login_page/components/custom_textfield.dart';
@@ -69,25 +70,25 @@ class _RegisterState extends State<Register> {
                             Column(
                               children: [
                                 SimpleTextfield(
-                                  label: AppText.fullname,
+                                  label: AppText.fullname.tr(),
                                   controller: null,
                                   fieldName: 'fullname',
                                 ),
                                 spaceheigth,
                                 SimpleTextfield(
-                                  label: AppText.emailaddress,
+                                  label: AppText.emailaddress.tr(),
                                   controller: null,
                                   fieldName: 'emailaddress',
                                 ),
                                 spaceheigth,
                                 CustomTextfields(
-                                  label: AppText.password,
+                                  label: AppText.password.tr(),
                                   eye: true,
                                   fieldName: 'password',
                                 ),
                                 spaceheigth,
                                 CustomTextfields(
-                                  label: AppText.confirmpassword,
+                                  label: AppText.confirmpassword.tr(),
                                   eye: true,
                                   fieldName: 'confirmpassword',
                                 ),
@@ -98,7 +99,7 @@ class _RegisterState extends State<Register> {
                               onTap: () {
                                 _validation(context);
                               },
-                              child: ConfirmButton(text: AppText.register),
+                              child: ConfirmButton(text: AppText.register.tr()),
                             ),
                             SizedBox(height: size.height * 0.03),
                             CostomSpacer(),
@@ -115,7 +116,7 @@ class _RegisterState extends State<Register> {
                             ),
                             SizedBox(height: size.height * 0.12),
                             AuthFooters(
-                              text: AppText.login,
+                              text: AppText.login.tr(),
                               navigator: AppRoutersName.loginroutename,
                             ),
                             SizedBox(height: size.height*0.2,)
