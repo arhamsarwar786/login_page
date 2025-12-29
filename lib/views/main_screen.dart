@@ -38,7 +38,7 @@ class MainScreen extends StatelessWidget {
               child: Column(
                 children: [
                   SizedBox(
-                    height: Responsive.isMobile(context) ? 5 : 5,
+                    height: Responsive.isMobile(context) ? 40 : 5,
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),

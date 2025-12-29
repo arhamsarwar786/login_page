@@ -33,7 +33,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       backgroundColor: isDark ? AppColor.black : AppColor.white,
       body: SafeArea(
-        right: false,left: false,top: true,bottom: false,
+        right: false,left: false,top: false
+        ,bottom: false,
         child: Row(
           children: [
             if (Responsive.isDesktop(context))

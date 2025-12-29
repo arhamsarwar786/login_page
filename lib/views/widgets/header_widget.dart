@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:easy_localization/easy_localization.dart';
+import 'package:go_router/go_router.dart';
 import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/utils/responsive.dart';
 import 'package:login_page/viewmodel/theme_view_model.dart';
+import 'package:login_page/views/notification.dart';
 import 'package:login_page/views/widgets/circular_icon.dart';
 import 'package:provider/provider.dart';
 
@@ -68,7 +70,12 @@ class HeaderWidget extends StatelessWidget {
                         ),
                         const SizedBox(width: 10),
                         CircularIcon(
-                            iconData: Icons.notifications_active_sharp),
+                            iconData: Icons.notifications_active_sharp,
+                            onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationsScreen()));
+                            
+                            },
+                            ),
                         const SizedBox(width: 10),
                         CircularIcon(iconData: Icons.message),
                         const SizedBox(width: 10),
@@ -114,7 +121,9 @@ class HeaderWidget extends StatelessWidget {
                   onTap: () => _showLanguageDialog(context),
                 ),
                 const SizedBox(width: 10),
-                CircularIcon(iconData: Icons.notifications_active_sharp),
+                CircularIcon(iconData: Icons.notifications_active_sharp,onTap: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context)=>NotificationsScreen()));
+                },),
                 const SizedBox(width: 10),
                 CircularIcon(iconData: Icons.message),
                 const SizedBox(width: 10),
