@@ -92,7 +92,7 @@ flutter:
   fonts:
     - family: hel
       fonts:
-        - asset: assets/fonts/Helvetica.ttf
+        - asset: assets/fonts/Poppins-Black.ttf
   #       - asset: fonts/Schyler-Italic.ttf
   #         style: italic
   #   - family: Trajan Pro

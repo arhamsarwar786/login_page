@@ -6,6 +6,7 @@ class ThemeProvider extends ChangeNotifier {
   bool _isLoggedIn = false;
   bool _rememberMe = false;
   String _currentLanguage = 'en';
+  bool _isLanguageChanging = false;
 
   bool get isDarkMode => _isDarkMode;
   bool get isLoggedIn => _isLoggedIn;
@@ -16,6 +17,24 @@ class ThemeProvider extends ChangeNotifier {
   static const String _loggedInKey = 'isLoggedIn';
   static const String _rememberMeKey = 'rememberMe';
   static const String _languageKey = 'selectedLanguage';
+ 
+
+int _selectedMenuIndex = 0;
+
+int get selectedMenuIndex => _selectedMenuIndex;
+
+void setSelectedMenuIndex(int index) {
+  _selectedMenuIndex = index;
+  notifyListeners();
+}
+
+
+bool get isLanguageChanging => _isLanguageChanging;
+
+void setLanguageChanging(bool value) {
+  _isLanguageChanging = value;
+  notifyListeners();
+}
 
   ThemeProvider() {
     _loadAllData();

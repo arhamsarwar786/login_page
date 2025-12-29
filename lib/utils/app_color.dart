@@ -1,7 +1,14 @@
 import 'package:flutter/material.dart';
 
 class AppColor {
+
+static const Color green= Colors.green;
+  static const Color lightpurple= Color(0xffBFBEDE);
+  static const Color orange= Color.fromARGB(255, 247, 155, 17);
+  static const Color skin= Color.fromARGB(255, 249, 184, 87);
   static const Color white= Color(0xffFFFFFF);
+  static const Color deeppurple= Color.fromARGB(255, 165, 53, 185);
+  static const Color sky = Color(0xFF64B5F6);
   static const Color black = Colors.black;
   static const Color pink = Color(0xffF6B8FD);
   static const Color blue = Color(0xff316AD7);

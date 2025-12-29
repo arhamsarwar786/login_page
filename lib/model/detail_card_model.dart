@@ -1,4 +1,5 @@
 import 'package:easy_localization/easy_localization.dart';
+import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/utils/app_text.dart';
 
 class DetailCardModel {
@@ -28,19 +29,19 @@ List<DetailCardModel> getDetailsList() {
     DetailCardModel(
       number: "510",
       id: "1",
-      personImage: "assets/images/person.png",
+      personImage: AppImages.person,
       personName: AppText.alanWalker.tr(),
-      email: "alanwalker@gmail.com",
-      countryName: AppText.france.tr(),
+      email: AppText.alanwalkergmail,
+      countryName: AppText.french.tr(),
       status: AppText.fulltime.tr(),
       jobTitle: AppText.marketingManager.tr(),
     ),
     DetailCardModel(
       number: "620",
       id:"2",
-      personImage: "assets/images/person.png",
+      personImage:AppImages.person,
       personName: AppText.romanKalko.tr(),
-      email: "alanwalker@gmail.com",
+      email: AppText.alanwalkergmail,
       countryName: AppText.usa.tr(),
       status: AppText.fulltime.tr(),
       jobTitle: AppText.uiuxDesigner.tr(),
@@ -48,9 +49,9 @@ List<DetailCardModel> getDetailsList() {
     DetailCardModel(
       number: "1203",
       id: "3",
-      personImage: "assets/images/person.png",
+      personImage: AppImages.person,
       personName: AppText.chetanVaghela.tr(),
-      email: "chetanv@gmail.com",
+      email: AppText.chetanvgmail,
       countryName: AppText.india.tr(),
       status: AppText.fulltime.tr(),
       jobTitle: AppText.flutterDeveloper.tr(),
@@ -58,9 +59,9 @@ List<DetailCardModel> getDetailsList() {
     DetailCardModel(
       number: "45",
       id: "4",
-      personImage: "assets/images/person.png",
+      personImage:AppImages.person,
       personName: AppText.foden.tr(),
-      email: "alanwalker@gmail.com",
+      email: AppText.alanwalkergmail,
       countryName: AppText.japan.tr(),
       status: AppText.fulltime.tr(),
       jobTitle: AppText.productDesigner.tr(),
@@ -68,9 +69,9 @@ List<DetailCardModel> getDetailsList() {
     DetailCardModel(
       number: "157",
       id:"5",
-      personImage: "assets/images/person.png",
+      personImage:AppImages.person,
       personName: AppText.alanWalker.tr(),
-      email: "chetanv@gmail.com",
+      email: AppText.chetanvgmail,
       countryName: AppText.indonesia.tr(),
       status: AppText.fulltime.tr(),
       jobTitle: AppText.marketingManager.tr(),
@@ -78,9 +79,9 @@ List<DetailCardModel> getDetailsList() {
     DetailCardModel(
       number: "1203",
       id: "6",
-      personImage: "assets/images/person.png",
+      personImage:AppImages.person,
       personName: AppText.alanWalker.tr(),
-      email: "alanwalker@gmail.com",
+      email: AppText.alanwalkergmail,
       countryName: AppText.uk.tr(),
       status: AppText.fulltime.tr(),
       jobTitle: AppText.marketingManager.tr(),

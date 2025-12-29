@@ -17,14 +17,16 @@ class OtpPassword extends StatefulWidget {
 
 class _OtpPasswordState extends State<OtpPassword> {
   final List<FocusNode> focusNodes = List.generate(6, (index) => FocusNode());
-  final List<TextEditingController> controllers = List.generate(6, (index)=> TextEditingController(text: ''));
+  final List<TextEditingController> controllers = List.generate(6, (index) => TextEditingController(text: ''));
 
   @override
   void initState() {
     super.initState();
-    for (var node in focusNodes) {
-      node.addListener(() {
-        setState(() {});
+    final viewModel = Provider.of<LoginViewModel>(context, listen: false);
+    
+    for (int i = 0; i < focusNodes.length; i++) {
+      focusNodes[i].addListener(() {
+        viewModel.notifyFocusChange();
       });
     }
   }
@@ -73,10 +75,8 @@ class _OtpPasswordState extends State<OtpPassword> {
                         focusNode: focusNodes[index],
                       
                         onChanged: (value) {
-                          
                           viewModel.updateOtp(index, value);
                           
-                    
                           if (value.length == 1 && index < 5) {
                             FocusScope.of(context).nextFocus();
                           }
@@ -85,7 +85,7 @@ class _OtpPasswordState extends State<OtpPassword> {
                           }
                         },
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.symmetric(horizontal: 0,vertical: 15),
+                          contentPadding: EdgeInsets.symmetric(horizontal: 0, vertical: 15),
                           border: InputBorder.none,
                           enabledBorder: viewModel.otpValues[index].isNotEmpty
                               ? GradientOutlineInputBorder(

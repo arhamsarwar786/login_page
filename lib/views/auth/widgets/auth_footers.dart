@@ -19,6 +19,7 @@ class AuthFooters extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(AppText.donthave.tr(), style: Appstyle().light1(context)),
+              SizedBox(width: 10,),
               InkWell(
                 onTap: () {
                   context.pushNamed(navigator);
@@ -31,6 +32,7 @@ class AuthFooters extends StatelessWidget {
             children: [
               spacewidth,
               Text(AppText.donthave.tr(), style: Appstyle().light1(context)),
+            SizedBox(width: 10,),
               InkWell(
                 onTap: () {
                   context.pushNamed(navigator);

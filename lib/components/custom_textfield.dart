@@ -4,34 +4,28 @@ import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/appstyle.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
 
-class CustomTextfields extends StatefulWidget {
+class CustomTextfields extends StatelessWidget {
   final String label;
   final bool eye;
-  final String? fieldName; 
+  final String? fieldName;
   
   const CustomTextfields({
     super.key,
     required this.label,
     required this.eye,
-    this.fieldName, 
+    this.fieldName,
   });
-
-  @override
-  State<CustomTextfields> createState() => _CustomTextfieldsState();
-}
-
-class _CustomTextfieldsState extends State<CustomTextfields> {
-  bool obscureText = true;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
 
-    if (widget.fieldName != null) {
+    if (fieldName != null) {
       return Consumer<LoginViewModel>(
         builder: (context, provider, child) {
-          final controller = provider.getController(widget.fieldName!);
-          final error = provider.getError(widget.fieldName!);
+          final controller = provider.getController(fieldName!);
+          final error = provider.getError(fieldName!);
+          final obscureText = provider.getObscureText(fieldName!);
 
           return SizedBox(
             width: _getWidth(size),
@@ -43,17 +37,15 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
                   controller: controller,
                   style: Appstyle().bold3(context),
                   cursorColor: AppColor.white,
-                  obscureText: widget.eye ? obscureText : false,
+                  obscureText: eye ? obscureText : false,
                   minLines: 1,
                   decoration: InputDecoration(
                     contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
-                    label: Text(widget.label, style: Appstyle().light(context)),
-                    suffixIcon: widget.eye
+                    label: Text(label, style: Appstyle().light(context)),
+                    suffixIcon: eye
                         ? IconButton(
                             onPressed: () {
-                              setState(() {
-                                obscureText = !obscureText;
-                              });
+                              provider.toggleObscureText(fieldName!);
                             },
                             icon: Icon(
                               obscureText ? Icons.visibility_off : Icons.visibility,
@@ -103,40 +95,44 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
         },
       );
     } else {
-      return SizedBox(
-        width: _getWidth(size),
-        child: TextFormField(
-          style: Appstyle().bold1(context),
-          cursorColor: AppColor.white,
-          obscureText: widget.eye ? obscureText : false,
-          minLines: 1,
-          decoration: InputDecoration(
-            contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
-            label: Text(widget.label, style: Appstyle().light(context)),
-            suffixIcon: widget.eye
-                ? IconButton(
-                    onPressed: () {
-                      setState(() {
-                        obscureText = !obscureText;
-                      });
-                    },
-                    icon: Icon(
-                      obscureText ? Icons.visibility_off : Icons.visibility,
-                      color: AppColor.grey,
-                    ),
-                  )
-                : null,
-            border: InputBorder.none,
-            enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.grey),
-              borderRadius: BorderRadius.circular(8),
+      return Consumer<LoginViewModel>(
+        builder: (context, provider, child) {
+          final obscureText = provider.getObscureText('default');
+          
+          return SizedBox(
+            width: _getWidth(size),
+            child: TextFormField(
+              style: Appstyle().bold1(context),
+              cursorColor: AppColor.white,
+              obscureText: eye ? obscureText : false,
+              minLines: 1,
+              decoration: InputDecoration(
+                contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 12),
+                label: Text(label, style: Appstyle().light(context)),
+                suffixIcon: eye
+                    ? IconButton(
+                        onPressed: () {
+                          provider.toggleObscureText('default');
+                        },
+                        icon: Icon(
+                          obscureText ? Icons.visibility_off : Icons.visibility,
+                          color: AppColor.grey,
+                        ),
+                      )
+                    : null,
+                border: InputBorder.none,
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColor.grey),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(color: AppColor.darkgrey, width: 1.5),
+                  borderRadius: BorderRadius.circular(8),
+                ),
+              ),
             ),
-            focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: AppColor.darkgrey, width: 1.5),
-              borderRadius: BorderRadius.circular(8),
-            ),
-          ),
-        ),
+          );
+        },
       );
     }
   }
@@ -154,5 +150,4 @@ class _CustomTextfieldsState extends State<CustomTextfields> {
       return size.width * 0.4;
     }
   }
-  
 }

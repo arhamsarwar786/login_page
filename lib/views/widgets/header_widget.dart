@@ -7,17 +7,10 @@ import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:login_page/views/widgets/circular_icon.dart';
 import 'package:provider/provider.dart';
 
-class HeaderWidget extends StatefulWidget {
+class HeaderWidget extends StatelessWidget {
   final GlobalKey<ScaffoldState> scaffoldKey;
 
   const HeaderWidget({super.key, required this.scaffoldKey});
-
-  @override
-  State<HeaderWidget> createState() => _HeaderWidgetState();
-}
-
-class _HeaderWidgetState extends State<HeaderWidget> {
-  bool _isChanging = false;
 
   @override
   Widget build(BuildContext context) {
@@ -31,7 +24,7 @@ class _HeaderWidgetState extends State<HeaderWidget> {
         children: [
           if (!Responsive.isDesktop(context))
             InkWell(
-              onTap: () => widget.scaffoldKey.currentState!.openDrawer(),
+              onTap: () => scaffoldKey.currentState!.openDrawer(),
               child: Padding(
                 padding: const EdgeInsets.all(3),
                 child: Icon(
@@ -86,20 +79,21 @@ class _HeaderWidgetState extends State<HeaderWidget> {
                         ),
                         const SizedBox(width: 10),
                         Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
                               AppText.faizan.tr(),
-                              style: TextStyle(fontSize: 16,
-                          color:     isDark? AppColor.white: AppColor.white,
+                              style: TextStyle(
+                                fontSize:MediaQuery.of(context).size.width >1000?15:16,
+                                color: isDark ? AppColor.white : AppColor.white,
                                 fontWeight: FontWeight.bold,
                               ),
                             ),
                             Text(
                               AppText.flutterDeveloper.tr(),
-                              style: TextStyle(fontSize: 14,
-                          color:     isDark? AppColor.white: AppColor.white,),
+                              style: TextStyle(
+                                fontSize:MediaQuery.of(context).size.width >1000?12:14,
+                                color: isDark ? AppColor.white : AppColor.white,
+                              ),
                             ),
                           ],
                         ),
@@ -136,156 +130,196 @@ class _HeaderWidgetState extends State<HeaderWidget> {
   }
 
   Widget _buildLanguageOption(
-    BuildContext context,
-    StateSetter setDialogState, {
+    BuildContext context, {
     required String flag,
     required String language,
     required Locale locale,
     required bool isDark,
   }) {
-    final isSelected = context.locale.languageCode == locale.languageCode;
+    return Consumer<ThemeProvider>(
+      builder: (context, themeProvider, child) {
+        final isSelected = context.locale.languageCode == locale.languageCode;
+        final isChanging = themeProvider.isLanguageChanging;
 
-    return InkWell(
-      onTap: _isChanging
-          ? null
-          : () async {
-              setDialogState(() {
-                _isChanging = true;
-              });
+        return InkWell(
+          onTap: isChanging
+              ? null
+              : () async {
+                  themeProvider.setLanguageChanging(true);
 
-              // Language change karein
-              await context.setLocale(locale);
+                  await context.setLocale(locale);
+                  await Future.delayed(const Duration(milliseconds: 150));
 
-              // Small delay for smooth transition
-              await Future.delayed(const Duration(milliseconds: 150));
+                  if (context.mounted) {
+                    Navigator.pop(context);
+                  }
+                  if (context.mounted) {
+                    themeProvider.notifyLanguageChange();
+                  }
 
-              // Dialog close karein
-              if (context.mounted) {
-                Navigator.pop(context);
-              }
-
-              // Provider ke through notify karein
-              if (context.mounted) {
-                context.read<ThemeProvider>().notifyLanguageChange();
-              }
-
-              // Reset changing state
-              if (mounted) {
-                setState(() {
-                  _isChanging = false;
-                });
-              }
-            },
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
-        decoration: BoxDecoration(
-          color: isSelected
-              ? AppColor.blue.withOpacity(0.2)
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
-          border: Border.all(
-            color: isSelected ? AppColor.blue : Colors.grey.withOpacity(0.3),
-            width: isSelected ? 2 : 1,
-          ),
-        ),
-        child: Row(
-          children: [
-            Text(flag, style: const TextStyle(fontSize: 28)),
-            const SizedBox(width: 12),
-            Expanded(
-              child: Text(
-                language,
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                  color: isSelected
-                      ? AppColor.blue
-                      : (isDark ? AppColor.black : AppColor.clrWhite),
-                ),
+                  themeProvider.setLanguageChanging(false);
+                },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 200),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 16),
+            decoration: BoxDecoration(
+              color: isSelected
+                  ? AppColor.blue
+                  : Colors.transparent,
+              borderRadius: BorderRadius.circular(10),
+              border: Border.all(
+                color: isSelected ? AppColor.blue : Colors.grey,
+                width: isSelected ? 2 : 1,
               ),
             ),
-            if (_isChanging && !isSelected)
-              const SizedBox(
-                width: 20,
-                height: 20,
-                child: CircularProgressIndicator(
-                  strokeWidth: 2,
-                  valueColor: AlwaysStoppedAnimation(Colors.blue),
+            child: Row(
+              children: [
+                Text(flag, style: const TextStyle(fontSize: 28)),
+                const SizedBox(width: 12),
+                Expanded(
+                  child: Text(
+                    language,
+                    style: TextStyle(
+                      fontFamily: "hel",
+                      fontSize: 16,
+                      fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
+                      color: isSelected
+                          ? AppColor.white
+                          : (isDark ? AppColor.black : AppColor.clrWhite),
+                    ),
+                  ),
                 ),
-              )
-            else if (isSelected)
-              Icon(
-                Icons.check_circle,
-                color: AppColor.blue,
-                size: 24,
-              ),
-          ],
-        ),
-      ),
+                if (isChanging && isSelected)
+                  const SizedBox(
+                    width: 20,
+                    height: 20,
+                    child: CircularProgressIndicator(
+                      strokeWidth: 2,
+                      valueColor: AlwaysStoppedAnimation(Colors.blue),
+                    ),
+                  )
+                else if (isSelected)
+                  Icon(
+                    Icons.check_circle,
+                    color: AppColor.blue,
+                    size: 24,
+                  ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 
   void _showLanguageDialog(BuildContext context) {
-    final isDark =
-        Provider.of<ThemeProvider>(context, listen: false).isDarkMode;
+    final isDark = Provider.of<ThemeProvider>(
+      context,
+      listen: false,
+    ).isDarkMode;
 
     showDialog(
       context: context,
-      barrierDismissible: !_isChanging,
+      barrierDismissible: false,
       builder: (dialogContext) {
-        return StatefulBuilder(
-          builder: (context, setDialogState) {
-            return AlertDialog(
-              backgroundColor:
-                  isDark ? AppColor.white : AppColor.clrBoxBackground,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-              title: Text(
-                AppText.selectLanguage.tr(),
-                style: TextStyle(
-                  color: isDark ? AppColor.black : AppColor.clrWhite,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20,
+        return Consumer<ThemeProvider>(
+          builder: (context, themeProvider, child) {
+            // ignore: deprecated_member_use
+            return WillPopScope(
+              onWillPop: () async => !themeProvider.isLanguageChanging,
+              child: AlertDialog(
+                backgroundColor: isDark
+                    ? AppColor.white
+                    : AppColor.clrBoxBackground,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
                 ),
-              ),
-              content: SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    // English
-                    _buildLanguageOption(
-                      context,
-                      setDialogState,
-                      flag: '🇬🇧',
-                      language: AppText.english.tr(),
-                      locale: const Locale('en'),
-                      isDark: isDark,
+                    Text(
+                      AppText.selectLanguage.tr(),
+                      style: TextStyle(
+                        fontFamily: "hel",
+                        color: isDark ? AppColor.black : AppColor.clrWhite,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 20,
+                      ),
                     ),
-                    const SizedBox(height: 10),
-
-                    // Urdu
-                    _buildLanguageOption(
-                      context,
-                      setDialogState,
-                      flag: '🇵🇰',
-                      language: AppText.urdu.tr(),
-                      locale: const Locale('ur'),
-                      isDark: isDark,
-                    ),
-                    const SizedBox(height: 10),
-
-                    // Arabic
-                    _buildLanguageOption(
-                      context,
-                      setDialogState,
-                      flag: '🇸🇦',
-                      language: AppText.arabic.tr(),
-                      locale: const Locale('ar'),
-                      isDark: isDark,
+                    InkWell(
+                      onTap: themeProvider.isLanguageChanging
+                          ? null
+                          : () {
+                              Navigator.pop(context);
+                            },
+                      child: Icon(
+                        Icons.close,
+                        color: isDark ? AppColor.black : AppColor.clrWhite,
+                        size: 24,
+                      ),
                     ),
                   ],
+                ),
+                content: ConstrainedBox(
+                  constraints: BoxConstraints(
+                    maxWidth: MediaQuery.of(context).size.width * 0.5,
+                    maxHeight: MediaQuery.of(context).size.height * 0.6,
+                  ),
+                  child: SingleChildScrollView(
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        // English
+                        _buildLanguageOption(
+                          context,
+                          flag: '🇬🇧',
+                          language: AppText.english.tr(),
+                          locale: const Locale('en'),
+                          isDark: isDark,
+                        ),
+                        const SizedBox(height: 10),
+
+                        // Urdu
+                        _buildLanguageOption(
+                          context,
+                          flag: '🇵🇰',
+                          language: AppText.urdu.tr(),
+                          locale: const Locale('ur'),
+                          isDark: isDark,
+                        ),
+                        const SizedBox(height: 10),
+
+                        // Arabic
+                        _buildLanguageOption(
+                          context,
+                          flag: '🇸🇦',
+                          language: AppText.arabic.tr(),
+                          locale: const Locale('ar'),
+                          isDark: isDark,
+                        ),
+                        const SizedBox(height: 10),
+
+                        // French
+                        _buildLanguageOption(
+                          context,
+                          flag: '🇫🇷',
+                          language: AppText.french.tr(),
+                          locale: const Locale("fr"),
+                          isDark: isDark,
+                        ),
+                        const SizedBox(height: 10),
+
+                        // Chinese
+                        _buildLanguageOption(
+                          context,
+                          flag: '🇨🇳',
+                          language: AppText.chinese.tr(),
+                          locale: const Locale('zh'),
+                          isDark: isDark,
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
               ),
             );

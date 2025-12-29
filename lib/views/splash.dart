@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_routers_name.dart';
 import 'package:login_page/utils/app_text.dart';
 import 'package:login_page/viewmodel/theme_view_model.dart';
@@ -50,7 +51,7 @@ class _SplashScreenState extends State<SplashScreen> {
             Icon(
               Icons.circle,
               size: 100,
-              color: const Color.fromARGB(255, 129, 81, 232),
+              color: AppColor.blue,
             ),
             const SizedBox(height: 30),
             const CircularProgressIndicator(),
@@ -65,7 +66,7 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
             const SizedBox(height: 10),
             Text(
-              AppText.management,
+              AppText.management.tr(),
               style: TextStyle(
                 fontSize: 16,
                 color: isDark ? Colors.white70 : Colors.black54,

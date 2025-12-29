@@ -3,6 +3,20 @@ import 'package:flutter/material.dart';
 class LoginViewModel extends ChangeNotifier {
   final List<String> otpValues = List.filled(6, "");
   bool showError = false;
+
+final Map<String, bool> _obscureTextMap = {};
+void notifyFocusChange() {
+  notifyListeners();
+}
+
+bool getObscureText(String fieldName) {
+  return _obscureTextMap[fieldName] ?? true;
+}
+
+void toggleObscureText(String fieldName) {
+  _obscureTextMap[fieldName] = !(_obscureTextMap[fieldName] ?? true);
+  notifyListeners();
+}
   
   void updateOtp(int index, String value) {
     otpValues[index] = value;

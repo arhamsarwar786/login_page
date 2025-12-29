@@ -8,35 +8,35 @@ class Chart extends StatelessWidget {
   final String pieCharttext;
   final String piechartfield;
   final String piechartvalue;
-  Chart({super.key, required this.pieCharttext, required this.piechartfield, required this.piechartvalue});
+  const Chart({super.key, required this.pieCharttext, required this.piechartfield, required this.piechartvalue});
  
   List<PieChartSectionData> get paiChartSelectionData => [
     PieChartSectionData(
-      color: Color(0xFFCE6462),
+      color:AppColor.orange,
       value: double.parse(piechartvalue),
       showTitle: false,
       radius: 22,
     ),
     PieChartSectionData(
-      color: Color(0xFF4F53CE),
+      color: AppColor.blue,
       value: 10,
       showTitle: false,
       radius: 20,
     ),
     PieChartSectionData(
-      color: Color(0xFFEEA468),
+      color:AppColor.skin,
       value: 15,
       showTitle: false,
       radius: 15,
     ),
     PieChartSectionData(
-      color: Color(0xFFA83CE5),
+      color:AppColor.deeppurple,
       value: 25,
       showTitle: false,
       radius: 25,
     ),
     PieChartSectionData(
-      color: Color(0xFF3395F7),
+      color: AppColor.sky,
       value: 25,
       showTitle: false,
       radius: 15,

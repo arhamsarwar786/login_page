@@ -40,7 +40,10 @@ class _VerifyPasswordState extends State<VerifyPassword> {
 
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
-      child: SafeArea(
+      child: SafeArea( left: false,
+      right: false,
+      bottom: false,
+      top: true,
         child: Scaffold(
           backgroundColor: isDark? AppColor.white: AppColor.black,
           body: SingleChildScrollView(
@@ -131,10 +134,10 @@ class _VerifyPasswordState extends State<VerifyPassword> {
       String username = parts[0];
       
       if (username.length <= 4) {
-        return username + '@' + parts[1];
+        return '$username@${parts[1]}';
       }
       String lastFour = username.substring(username.length - 4);
-      return  lastFour + '@' + parts[1];
+      return  '$lastFour@${parts[1]}';
     }
     
     if (email.length <= 4) return email;

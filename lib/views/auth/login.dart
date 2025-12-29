@@ -46,6 +46,10 @@ class _LoginState extends State<Login> {
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
       child: SafeArea(
+        left: false,
+      right: false,
+      bottom: false,
+      top: true,
         child: Scaffold(
           backgroundColor: isDark ? AppColor.white : AppColor.black,
           body: SizedBox(

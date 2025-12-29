@@ -16,40 +16,14 @@ class CustomCard extends StatefulWidget {
 }
 
 class _CustomCardState extends State<CustomCard> {
-  bool _isPressed = false;
+  
 
   @override
   Widget build(BuildContext context) {
     final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     Size size = MediaQuery.of(context).size;
-    final isMobile = Responsive.isMobile(context);
+ 
 
-    if (isMobile) {
-      return GestureDetector(
-        onTapDown: (_) => setState(() => _isPressed = true),
-        onTapUp: (_) => setState(() => _isPressed = false),
-        onTapCancel: () => setState(() => _isPressed = false),
-        child: AnimatedContainer(
-          duration: Duration(milliseconds: 200),
-          padding: EdgeInsets.all(10),
-          decoration: BoxDecoration(
-            color: isDark ? AppColor.white : AppColor.clrBoxBackground,
-            boxShadow: _isPressed
-                ? [
-                    BoxShadow(
-                      color: const Color.fromARGB(255, 63, 63, 63),
-                      spreadRadius: 3,
-                      blurRadius: 7,
-                      offset: Offset(2, 5),
-                    ),
-                  ]
-                : [BoxShadow(color: Color(0xff333333), spreadRadius: 1)],
-            borderRadius: BorderRadius.all(Radius.circular(10)),
-          ),
-          child: _buildCardContent(size, isDark, context),
-        ),
-      );
-    }
 
     return HoverContainer(
       hoverDecoration: BoxDecoration(
@@ -80,8 +54,8 @@ class _CustomCardState extends State<CustomCard> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          height: size.width < 350 ? 30 : 40,
-          width: size.width < 350 ? 30 : 40,
+          height: size.width < 350 ? 30 : 30,
+          width: size.width < 350 ? 30: 30,
           decoration: BoxDecoration(
             gradient: LinearGradient(
               begin: Alignment.topRight,
@@ -106,7 +80,7 @@ class _CustomCardState extends State<CustomCard> {
             color: isDark ? AppColor.black : AppColor.clrBigText,
             fontWeight: FontWeight.w700,
             fontFamily: "hel",
-            fontSize: size.width < 365 ? 12 : (Responsive.isMobile(context) ? 16 : 16),
+            fontSize: size.width < 365 ? 10 : (Responsive.isMobile(context) ? 16 : 16),
           ),
           overflow: TextOverflow.ellipsis,
         ),
@@ -120,7 +94,7 @@ class _CustomCardState extends State<CustomCard> {
               style: TextStyle(
                 color: isDark ? AppColor.black : AppColor.white,
                 fontFamily: "hel",
-                fontSize: size.width < 365 ? 12 : (Responsive.isMobile(context) ? 15 : 27),
+                fontSize: size.width < 365 ? 10 : (Responsive.isMobile(context) ? 15 : 27),
               ),
             ),
             SizedBox(width: 10),
@@ -131,7 +105,7 @@ class _CustomCardState extends State<CustomCard> {
               style: TextStyle(
                 color: isDark ? AppColor.grey : AppColor.clrSmallText,
                 fontFamily: "hel",
-                fontSize: size.width < 365 ? 12 : (Responsive.isMobile(context) ? 13 : 16),
+                fontSize: size.width < 365 ? 10 : (Responsive.isMobile(context) ? 13 : 16),
               ),
             )
           ],
@@ -140,7 +114,7 @@ class _CustomCardState extends State<CustomCard> {
           widget.mainCardModel.percentage!,
           style: TextStyle(
             color: widget.mainCardModel.color,
-            fontFamily: "hel",
+            fontFamily: "hel",fontSize:  size.width < 365 ? 10 : (Responsive.isMobile(context) ? 13 : 16),
           ),
         ),
       ],

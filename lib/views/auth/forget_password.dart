@@ -36,7 +36,10 @@ class _ForgetPasswordState extends State<ForgetPassword> {
 
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
-      child: SafeArea(
+      child: SafeArea( left: false,
+      right: false,
+      bottom: false,
+      top: true,
         child: Scaffold(
           backgroundColor: isDark? AppColor.white: AppColor.black,
           body: SingleChildScrollView(

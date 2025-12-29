@@ -45,6 +45,10 @@ class _RegisterState extends State<Register> {
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
       child: SafeArea(
+         left: false,
+      right: false,
+      bottom: false,
+      top: true,
         child: Scaffold(
           backgroundColor: isDark?AppColor.white: AppColor.black,
           body: SizedBox(

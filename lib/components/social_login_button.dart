@@ -4,7 +4,8 @@ import 'package:login_page/utils/app_color.dart';
 class SocialLoginButton extends StatelessWidget {
  final String imge;
  final Color color;
- final imagecolor;
+  // ignore: prefer_typing_uninitialized_variables
+  final imagecolor;
   const SocialLoginButton ({super.key, required this.imge, required this.color, this.imagecolor});
 
   @override

@@ -37,7 +37,10 @@ class _CreateNewPasswordState extends State<CreateNewPassword> {
     final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     return ChangeNotifierProvider(
       create: (_) => LoginViewModel(),
-      child: SafeArea(
+      child: SafeArea( left: false,
+      right: false,
+      bottom: false,
+      top: true,
         child: Scaffold(
           backgroundColor: isDark? AppColor.white: AppColor.black,
           body: SingleChildScrollView(

@@ -1,7 +1,8 @@
 
 
 class AppText {
-  
+  static const chetanvgmail= "chetanv@gmail.com";
+  static const alanwalkergmail="alanwalker@gmail.com";
   static const fulltime = "fulltime";
   static const marketingManager = "marketingManager";
   static const uiuxDesigner = "uiuxDesigner";
@@ -11,7 +12,6 @@ class AppText {
   static const romanKalko = "romanKalko";
   static const chetanVaghela = "chetanVaghela";
   static const foden = "foden";
-  static const france = "france";
   static const usa = "usa";
   static const india = "india";
   static const japan = "japan";
@@ -107,4 +107,6 @@ class AppText {
   static const english = "english";
   static const urdu = "urdu";
   static const arabic = 'arabic';
+  static const french= "french";
+  static const String chinese = 'chinese'; 
 }

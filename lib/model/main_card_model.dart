@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hugeicons/hugeicons.dart';
+import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_text.dart';
 
 class MainCardModel {
@@ -28,7 +29,7 @@ List myCards()
     subTitle: AppText.usd.tr(),
     count: "\$ 13900",
     percentage: "-10%",
-    color: Colors.red,
+    color: AppColor.red,
   ),
   MainCardModel(
     title: AppText.companyExpenses.tr(),
@@ -36,7 +37,7 @@ List myCards()
     iconData: HugeIcons.strokeRoundedExpander,
     count: "\$ 23100",
     percentage: "-8%",
-    color: Colors.red,
+    color: AppColor.red,
   ),
   MainCardModel(
     title: AppText.totalEmployee.tr(),
@@ -44,7 +45,7 @@ List myCards()
     iconData: CupertinoIcons.group,
     count: "4300",
     percentage: "+10%",
-    color: Colors.green,
+    color: AppColor.green,
   ),
   MainCardModel(
     title: AppText.newHires.tr(),
@@ -52,6 +53,6 @@ List myCards()
     iconData: Icons.person,
     count: "102",
     percentage: "+2%",
-    color: Colors.green,
+    color: AppColor.green,
   ),
 ];}

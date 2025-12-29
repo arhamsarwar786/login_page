@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:login_page/utils/app_color.dart';
 import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:provider/provider.dart';
@@ -18,7 +19,7 @@ class TabletResetGradient extends StatelessWidget {
       bottom: 0,
       child: SizedBox(
               height: size.width>1024?size.height*0.8:   size.height*0.5,
-                  child: Image.asset(AppImages.gradient3, fit: BoxFit.fill,color: isdark ? Color(0xffBFBEDE) : null),
+                  child: Image.asset(AppImages.gradient3, fit: BoxFit.fill,color: isdark ? AppColor.lightpurple : null),
               ),
     ) ;
   }
