@@ -6,12 +6,14 @@ import 'package:provider/provider.dart';
 
 class SimpleTextfield extends StatelessWidget {
   final String label;
-  final String fieldName; 
+  final String fieldName;
+  final TextEditingController? controller; 
   
   const SimpleTextfield({
     super.key,
     required this.label,
-    required this.fieldName, required controller,
+    required this.fieldName,
+    this.controller, 
   });
 
   @override
@@ -20,7 +22,14 @@ class SimpleTextfield extends StatelessWidget {
     
     return Consumer<LoginViewModel>(
       builder: (context, provider, child) {
-        final controller = provider.getController(fieldName);
+        // ✅ External controller ko priority do, warna provider ka use karo
+        final TextEditingController fieldController;
+        if (controller != null) {
+          fieldController = controller!;
+        } else {
+          fieldController = provider.getController(fieldName);
+        }
+        
         final error = provider.getError(fieldName);
         
         return SizedBox(
@@ -30,11 +39,11 @@ class SimpleTextfield extends StatelessWidget {
             mainAxisSize: MainAxisSize.min,
             children: [
               TextFormField(
-                controller: controller,
+                controller: fieldController, // ✅ Use fieldController
                 style: Appstyle().bold3(context),
-                cursorColor: AppColor.black,
+                cursorColor: AppColor.white,
                 decoration: InputDecoration(
-                  contentPadding: EdgeInsets.symmetric(horizontal: 10,vertical: 14),
+                  contentPadding: EdgeInsets.symmetric(horizontal: 10, vertical: 14),
                   label: Text(label, style: Appstyle().light(context)),
                   border: InputBorder.none,
                   enabledBorder: OutlineInputBorder(
@@ -50,6 +59,14 @@ class SimpleTextfield extends StatelessWidget {
                     ),
                     borderRadius: BorderRadius.circular(8),
                   ),
+                  errorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColor.red),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
+                  focusedErrorBorder: OutlineInputBorder(
+                    borderSide: BorderSide(color: AppColor.red, width: 1.5),
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                 ),
               ),
               if (error != null)
@@ -60,6 +77,7 @@ class SimpleTextfield extends StatelessWidget {
                     style: TextStyle(
                       color: AppColor.red,
                       fontSize: 12,
+                      fontWeight: FontWeight.w500,
                     ),
                   ),
                 ),

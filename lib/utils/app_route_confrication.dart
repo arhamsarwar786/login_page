@@ -8,6 +8,7 @@ import 'package:login_page/views/auth/register.dart';
 import 'package:login_page/views/auth/reset_password.dart';
 import 'package:login_page/views/auth/verify_password.dart';
 import 'package:login_page/views/dashboard.dart';
+import 'package:login_page/views/notification.dart';
 import 'package:login_page/views/splash.dart';
 
 class MyAppRouter {
@@ -22,7 +23,14 @@ class MyAppRouter {
           return MaterialPage(child: SplashScreen());
         },
       ),
-      
+      // notification
+      GoRoute(
+        name: AppRoutersName.notificationroutename,
+        path: "/notification",
+        pageBuilder: (context, state) {
+          return MaterialPage(child: Notifications());
+        },
+      ),
       // Login Route
       GoRoute(
         name: AppRoutersName.loginroutename,

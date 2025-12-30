@@ -21,7 +21,7 @@ class FilterButton extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.symmetric(horizontal:  size.width>430? 25:15, vertical:size.width>430? 10:7),
         decoration: BoxDecoration(
-          color: isSelected ? AppColor.white : AppColor.white.withOpacity(0.2),
+          color: isSelected ? AppColor.white : AppColor.lightwhite,
           borderRadius: BorderRadius.circular(20),
           boxShadow: isSelected
               ? [
@@ -37,7 +37,7 @@ class FilterButton extends StatelessWidget {
           label,
           style: TextStyle(
             fontSize: size.width>430?14:10,
-            color: isSelected ? const Color(0xFF1F2937) : AppColor.white,
+            color: isSelected ? AppColor.deepblue: AppColor.white,
             fontWeight: FontWeight.w600,fontFamily: "hel"
           ),
         ),

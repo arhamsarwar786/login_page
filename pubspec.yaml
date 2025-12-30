@@ -49,6 +49,7 @@ dependencies:
   hovering: ^1.0.4
   shared_preferences: ^2.5.4
   easy_localization: ^3.0.3
+  http: ^1.6.0
 
 dev_dependencies:
   flutter_test:

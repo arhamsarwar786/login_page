@@ -2,7 +2,9 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:login_page/utils/app_images.dart';
 import 'package:login_page/utils/app_route_confrication.dart';
+import 'package:login_page/viewmodel/auth_view.model.dart';
 import 'package:login_page/viewmodel/login_view_model.dart';
+import 'package:login_page/viewmodel/notification_view_model.dart';
 import 'package:login_page/viewmodel/theme_view_model.dart';
 import 'package:provider/provider.dart';
 
@@ -40,6 +42,9 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (_) => LoginViewModel()),
         ChangeNotifierProvider(create: (_) => ThemeProvider()),
+        ChangeNotifierProvider(create: (_)=>NotificationProvider()),
+        ChangeNotifierProvider(create: (_)=>AuthViewModel())
+
       ],
       child: Builder(
         builder: (context) {

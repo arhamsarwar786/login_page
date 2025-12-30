@@ -16,6 +16,7 @@ class AppImages {
   static const group = "assets/images/group.png";
   static const group1 = "assets/images/group1.png";
   static const translationpath= 'assets/translations';
+ static const String baseUrl = 'https://vendor.umazing.shop';
 
 
 

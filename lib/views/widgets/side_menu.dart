@@ -22,7 +22,7 @@ class SideMenu extends StatelessWidget {
       context: context,
       barrierDismissible: false,
       builder: (dialogContext) => AlertDialog(
-        backgroundColor: Colors.white,
+        backgroundColor: AppColor.white,
         title: Text(
           AppText.logout.tr(),
           style: TextStyle(fontFamily: "hel"),
@@ -68,7 +68,7 @@ class SideMenu extends StatelessWidget {
                   child: Center(
                     child: Text(
                       AppText.logout.tr(),
-                      style: TextStyle(color: Colors.white),
+                      style: TextStyle(color: AppColor.white),
                     ),
                   ),
                 ),
@@ -204,7 +204,7 @@ class SideMenu extends StatelessWidget {
                           Icon(
                             bottomMenu()[i].icon,
                             size: 20,
-                            color: i == 1 ? Colors.red : AppColor.clrSmallText,
+                            color: i == 1 ? AppColor.red : AppColor.clrSmallText,
                           ),
                           SizedBox(width: 10),
                           Text(
@@ -212,7 +212,7 @@ class SideMenu extends StatelessWidget {
                             style: TextStyle(
                               fontSize: 14,
                               color: i == 1
-                                  ? Colors.red
+                                  ? AppColor.red
                                   : (isDark
                                       ? AppColor.black
                                       : AppColor.clrSmallText),

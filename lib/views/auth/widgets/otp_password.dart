@@ -96,7 +96,7 @@ class _OtpPasswordState extends State<OtpPassword> {
                                 )
                               : OutlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: viewModel.showError ? Colors.red : AppColor.grey,
+                                    color: viewModel.showError ? AppColor.red : AppColor.grey,
                                     width: 1.0,
                                   ),
                                   borderRadius: BorderRadius.circular(4),
@@ -137,7 +137,7 @@ class _OtpPasswordState extends State<OtpPassword> {
                 child: Text(
                   AppText.enteryourpasscode.tr(),
                   style: TextStyle(
-                    color: Colors.red,
+                    color: AppColor.red,
                     fontSize: 14,
                     fontWeight: FontWeight.w500,
                   ),

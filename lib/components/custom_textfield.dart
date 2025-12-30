@@ -8,12 +8,14 @@ class CustomTextfields extends StatelessWidget {
   final String label;
   final bool eye;
   final String? fieldName;
+  final TextEditingController? controller;
   
   const CustomTextfields({
     super.key,
     required this.label,
     required this.eye,
     this.fieldName,
+    this.controller,
   });
 
   @override
@@ -23,7 +25,14 @@ class CustomTextfields extends StatelessWidget {
     if (fieldName != null) {
       return Consumer<LoginViewModel>(
         builder: (context, provider, child) {
-          final controller = provider.getController(fieldName!);
+          // Agar external controller hai toh use karo, warna provider ka controller use karo
+          final TextEditingController fieldController;
+          if (controller != null) {
+            fieldController = controller!;
+          } else {
+            fieldController = provider.getController(fieldName!);
+          }
+          
           final error = provider.getError(fieldName!);
           final obscureText = provider.getObscureText(fieldName!);
 
@@ -34,7 +43,7 @@ class CustomTextfields extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 TextFormField(
-                  controller: controller,
+                  controller: fieldController,
                   style: Appstyle().bold3(context),
                   cursorColor: AppColor.white,
                   obscureText: eye ? obscureText : false,
@@ -102,6 +111,7 @@ class CustomTextfields extends StatelessWidget {
           return SizedBox(
             width: _getWidth(size),
             child: TextFormField(
+              controller: controller,
               style: Appstyle().bold1(context),
               cursorColor: AppColor.white,
               obscureText: eye ? obscureText : false,

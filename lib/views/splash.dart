@@ -43,7 +43,7 @@ class _SplashScreenState extends State<SplashScreen> {
     final isDark = Provider.of<ThemeProvider>(context).isDarkMode;
     
     return Scaffold(
-      backgroundColor: isDark ? Colors.black : Colors.white,
+      backgroundColor: isDark ? AppColor.black : AppColor.white,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -61,7 +61,7 @@ class _SplashScreenState extends State<SplashScreen> {
               style: TextStyle(
                 fontSize: 28,
                 fontWeight: FontWeight.bold,
-                color: isDark ? Colors.white : Colors.black,
+                color: isDark ? AppColor.white : AppColor.black,
               ),
             ),
             const SizedBox(height: 10),
@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> {
               AppText.management.tr(),
               style: TextStyle(
                 fontSize: 16,
-                color: isDark ? Colors.white70 : Colors.black54,
+                color: isDark ? AppColor.white : AppColor.black,
               ),
             ),
           ],

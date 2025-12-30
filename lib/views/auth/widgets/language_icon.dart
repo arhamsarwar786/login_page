@@ -34,7 +34,7 @@ class LanguageIcon extends StatelessWidget {
               ),
             ],
           ),
-          child: const Icon(Icons.language, color: Colors.white, size: 24),
+          child: const Icon(Icons.language, color: AppColor.white, size: 24),
         ),
       ),
     );
@@ -79,7 +79,7 @@ class LanguageIcon extends StatelessWidget {
                   : Colors.transparent,
               borderRadius: BorderRadius.circular(10),
               border: Border.all(
-                color: isSelected ? AppColor.blue : Colors.grey,
+                color: isSelected ? AppColor.blue : AppColor.grey,
                 width: isSelected ? 2 : 1,
               ),
             ),
@@ -106,7 +106,7 @@ class LanguageIcon extends StatelessWidget {
                     height: 20,
                     child: CircularProgressIndicator(
                       strokeWidth: 2,
-                      valueColor: AlwaysStoppedAnimation(Colors.blue),
+                      valueColor: AlwaysStoppedAnimation(AppColor.blue),
                     ),
                   )
                 else if (isSelected)
@@ -148,7 +148,7 @@ class LanguageIcon extends StatelessWidget {
                       AppText.selectLanguage.tr(),
                       style: TextStyle(fontFamily: "hel",
                         color: isDark ? AppColor.black : AppColor.clrWhite,
-                        fontWeight: FontWeight.bold,
+                        fontWeight: FontWeight.bold,overflow: TextOverflow.ellipsis,
                         fontSize: 20,
                       ),
                     ),

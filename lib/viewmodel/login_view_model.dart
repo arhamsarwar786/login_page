@@ -4,19 +4,20 @@ class LoginViewModel extends ChangeNotifier {
   final List<String> otpValues = List.filled(6, "");
   bool showError = false;
 
-final Map<String, bool> _obscureTextMap = {};
-void notifyFocusChange() {
-  notifyListeners();
-}
+  final Map<String, bool> _obscureTextMap = {};
+  
+  void notifyFocusChange() {
+    notifyListeners();
+  }
 
-bool getObscureText(String fieldName) {
-  return _obscureTextMap[fieldName] ?? true;
-}
+  bool getObscureText(String fieldName) {
+    return _obscureTextMap[fieldName] ?? true;
+  }
 
-void toggleObscureText(String fieldName) {
-  _obscureTextMap[fieldName] = !(_obscureTextMap[fieldName] ?? true);
-  notifyListeners();
-}
+  void toggleObscureText(String fieldName) {
+    _obscureTextMap[fieldName] = !(_obscureTextMap[fieldName] ?? true);
+    notifyListeners();
+  }
   
   void updateOtp(int index, String value) {
     otpValues[index] = value;
@@ -30,7 +31,6 @@ void toggleObscureText(String fieldName) {
     for (String value in otpValues) {
       if (value.isEmpty) {
         showError = true;
-        
         notifyListeners(); 
         return false;
       }
@@ -61,6 +61,18 @@ void toggleObscureText(String fieldName) {
     return _errors[fieldName];
   }
 
+  // Set error manually (for external controllers)
+  void setError(String fieldName, String? error) {
+    _errors[fieldName] = error;
+    notifyListeners();
+  }
+
+  // Clear error manually
+  void clearError(String fieldName) {
+    _errors[fieldName] = null;
+    notifyListeners();
+  }
+
   // **NEW METHOD: Field ki value get karne ke liye**
   String? getFieldValue(String fieldName) {
     final controller = _controllers[fieldName];
@@ -78,15 +90,14 @@ void toggleObscureText(String fieldName) {
     return emailRegex.hasMatch(email);
   }
 
-  // Password validation - minimum 6 characters, at least 1 letter, 1 number, 1 special char
   bool _isValidPassword(String password) {
-    if (password.length < 8) return false;
+
     
+  
+    if (password.length < 6) return false;
     final hasLetter = RegExp(r'[a-zA-Z]').hasMatch(password);
     final hasNumber = RegExp(r'[0-9]').hasMatch(password);
-    final hasSpecialChar = RegExp(r'[!@#$%^&*(),.?":{}|<>]').hasMatch(password);
-    
-    return hasLetter && hasNumber && hasSpecialChar;
+    return hasLetter && hasNumber;
   }
   
   bool _isValidPasscode(String passcode) {
@@ -114,12 +125,12 @@ void toggleObscureText(String fieldName) {
         return 'Enter your passcode';
       case 'confirmpassword':
         return 'Confirm your password';
-        
       default:
         return 'This field is required';
     }
   }
 
+  // Validate field with internal controller
   bool validateField(String fieldName) {
     final controller = _controllers[fieldName];
     
@@ -167,7 +178,82 @@ void toggleObscureText(String fieldName) {
           return false;
         }
       } else {
-        // Username validation - minimum 8 characters
+        // Username validation - minimum 3 characters
+        if (text.length < 3) {
+          _errors[fieldName] = 'Username must be at least 3 characters';
+          notifyListeners();
+          return false;
+        }
+      }
+    }
+    
+    // Password validation
+    if (fieldName == 'password' || fieldName == 'confirmpassword') {
+      if (!_isValidPassword(text)) {
+        _errors[fieldName] = 'Password must be 8+ chars with letter, number & special char (@, #, etc.)';
+        notifyListeners();
+        return false;
+      }
+    }
+    
+    // Passcode validation
+    if (fieldName == 'passcode') {
+      if (!_isValidPasscode(text)) {
+        _errors[fieldName] = 'Password must be 8+ chars with letter, number & special char (@, #, etc.)';
+        notifyListeners();
+        return false;
+      }
+    }
+    
+    _errors[fieldName] = null;
+    notifyListeners();
+    return true;
+  }
+
+  // NEW: Validate external controller
+  bool validateExternalField(String fieldName, String value) {
+    // Check if field is empty
+    if (value.trim().isEmpty) {
+      _errors[fieldName] = _getEmptyFieldMessage(fieldName);
+      notifyListeners();
+      return false;
+    }
+    
+    final text = value.trim();
+    
+    // Email address validation
+    if (fieldName == 'emailaddress') {
+      if (!_isValidEmail(text)) {
+        _errors[fieldName] = 'Enter a valid email (e.g., user@example.com)';
+        notifyListeners();
+        return false;
+      }
+    }
+    
+    if (fieldName == 'fullname') {
+      if (text.length < 2) {
+        _errors[fieldName] = 'Name must be at least 2 characters';
+        notifyListeners();
+        return false;
+      }
+      
+      final hasOnlyLettersAndSpaces = RegExp(r'^[a-zA-Z\s]+$').hasMatch(text);
+      if (!hasOnlyLettersAndSpaces) {
+        _errors[fieldName] = 'Name can only contain letters and spaces';
+        notifyListeners();
+        return false;
+      }
+    }
+    
+    // Username or Email validation
+    if (fieldName == 'usernameoremail') {
+      if (text.contains('@')) {
+        if (!_isValidEmail(text)) {
+          _errors[fieldName] = 'Enter a valid email (e.g., user@example.com)';
+          notifyListeners();
+          return false;
+        }
+      } else {
         if (text.length < 3) {
           _errors[fieldName] = 'Username must be at least 3 characters';
           notifyListeners();
@@ -217,5 +303,4 @@ void toggleObscureText(String fieldName) {
     }
     super.dispose();
   }
-  
 }

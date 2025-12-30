@@ -144,7 +144,7 @@ void _validation(BuildContext context) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
           content: Text('Passwords do not match'),
-          backgroundColor: Colors.red,
+          backgroundColor: AppColor.red,
           duration: Duration(seconds: 2),
         ),
       );

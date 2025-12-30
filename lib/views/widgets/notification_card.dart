@@ -21,12 +21,12 @@ class NotificationCard extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 12),
       padding: const EdgeInsets.all(16),
       decoration: BoxDecoration(
-        color: const Color(0xFF111827),
+        color: AppColor.dark1blue,
         borderRadius: BorderRadius.circular(16),
         border: Border.all(
           color: notification.read
               ? Colors.transparent
-              : const Color(0xFFC084FC),
+              : AppColor.clrGradient1,
           width: 2,
         ),
       ),
@@ -87,7 +87,7 @@ class NotificationCard extends StatelessWidget {
           notification.message,
           style: const TextStyle(
             fontFamily: "hel",
-            color: Color(0xFFD1D5DB),
+            color: AppColor.greysmall,
             fontSize: 14,
           ),
         ),
@@ -99,7 +99,7 @@ class NotificationCard extends StatelessWidget {
               notification.time,
               style: const TextStyle(
                 fontFamily: "hel",
-                color: Color(0xFF9CA3AF),
+                color: AppColor.greylight,
                 fontSize: 12,
               ),
             ),
@@ -110,7 +110,7 @@ class NotificationCard extends StatelessWidget {
                   'Mark as read',
                   style: TextStyle(
                     fontFamily: "hel",
-                    color: Color(0xFFC084FC),
+                    color: AppColor.purple,
                     fontSize: 12,
                     fontWeight: FontWeight.w600,
                   ),

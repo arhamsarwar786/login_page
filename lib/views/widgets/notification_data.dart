@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:login_page/model/notification_model.dart';
+import 'package:login_page/utils/app_color.dart';
 
 class NotificationData {
   static List<NotificationModel> getNotifications() {
@@ -12,7 +13,7 @@ class NotificationData {
         message: 'Monthly payroll for December has been processed successfully.',
         time: '2 hours ago',
         read: false,
-        color: Colors.green,
+        color: AppColor.green,
       ),
       NotificationModel(
         id: 2,
@@ -22,7 +23,7 @@ class NotificationData {
         message: 'Sarah Johnson has completed onboarding documents.',
         time: '3 hours ago',
         read: false,
-        color: Colors.blue,
+        color: AppColor.blue,
       ),
       NotificationModel(
         id: 3,
@@ -32,7 +33,7 @@ class NotificationData {
         message: '5 employees marked absent today without prior notice.',
         time: '5 hours ago',
         read: false,
-        color: Colors.red,
+        color: AppColor.red,
       ),
       NotificationModel(
         id: 4,
@@ -42,7 +43,7 @@ class NotificationData {
         message: '12 performance reviews scheduled for next week.',
         time: '1 day ago',
         read: true,
-        color: Colors.purple,
+        color: AppColor.purple,
       ),
       NotificationModel(
         id: 5,
@@ -52,7 +53,7 @@ class NotificationData {
         message: 'Michael Chen\'s leave request has been approved.',
         time: '1 day ago',
         read: true,
-        color: Colors.green,
+        color: AppColor.green,
       ),
       NotificationModel(
         id: 6,
@@ -62,7 +63,7 @@ class NotificationData {
         message: 'You have 8 leave requests awaiting approval.',
         time: '2 days ago',
         read: true,
-        color: Colors.orange,
+        color: AppColor.orange,
       ),
       NotificationModel(
         id: 7,
@@ -72,7 +73,7 @@ class NotificationData {
         message: 'Welcome package sent to 3 new employees.',
         time: '2 days ago',
         read: true,
-        color: Colors.blue,
+        color: AppColor.blue,
       ),
       NotificationModel(
         id: 8,
@@ -82,7 +83,7 @@ class NotificationData {
         message: 'Jessica Lee submitted expense report for \$450.',
         time: '3 days ago',
         read: true,
-        color: Colors.green,
+        color: AppColor.green,
       ),
       NotificationModel(
         id: 9,
@@ -92,7 +93,7 @@ class NotificationData {
         message: 'Scheduled maintenance on Sunday 2 AM - 4 AM.',
         time: '4 days ago',
         read: true,
-        color: Colors.orange,
+        color: AppColor.orange,
       ),
       NotificationModel(
         id: 10,
@@ -102,7 +103,7 @@ class NotificationData {
         message: 'John Doe celebrates 5 years with the company!',
         time: '5 days ago',
         read: true,
-        color: Colors.purple,
+        color: AppColor.purple,
       ),
     ];
   }
